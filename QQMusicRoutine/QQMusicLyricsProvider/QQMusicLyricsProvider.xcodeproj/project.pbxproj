@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		508926EC23E12D7300E90853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926EB23E12D7300E90853 /* UIKit.framework */; };
+		508926EE23E12D7300E90853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926ED23E12D7300E90853 /* Foundation.framework */; };
+		508926F023E12D7300E90853 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926EF23E12D7300E90853 /* CydiaSubstrate.framework */; };
+		508926F923E12D7300E90853 /* QQMusicLyricsProvider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 508926F823E12D7300E90853 /* QQMusicLyricsProvider.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		508926E823E12D7300E90853 /* QQMusicLyricsProvider.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = QQMusicLyricsProvider.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		508926EB23E12D7300E90853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		508926ED23E12D7300E90853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		508926EF23E12D7300E90853 /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
+		508926F423E12D7300E90853 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		508926F623E12D7300E90853 /* QQMusicLyricsProvider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "QQMusicLyricsProvider-Prefix.pch"; path = "../QQMusicLyricsProvider-Prefix.pch"; sourceTree = "<group>"; };
+		508926F723E12D7300E90853 /* QQMusicLyricsProvider.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = QQMusicLyricsProvider.xm; sourceTree = "<group>"; };
+		508926F823E12D7300E90853 /* QQMusicLyricsProvider.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = QQMusicLyricsProvider.mm; sourceTree = "<group>"; };
+		508926FD23E12D7300E90853 /* QQMusicLyricsProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QQMusicLyricsProvider.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		508926E423E12D7300E90853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				508926EC23E12D7300E90853 /* UIKit.framework in Frameworks */,
+				508926EE23E12D7300E90853 /* Foundation.framework in Frameworks */,
+				508926F023E12D7300E90853 /* CydiaSubstrate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		508926DD23E12D7300E90853 = {
+			isa = PBXGroup;
+			children = (
+				508926F123E12D7300E90853 /* QQMusicLyricsProvider */,
+				508926EA23E12D7300E90853 /* Frameworks */,
+				508926E923E12D7300E90853 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		508926E923E12D7300E90853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				508926E823E12D7300E90853 /* QQMusicLyricsProvider.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		508926EA23E12D7300E90853 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				508926EB23E12D7300E90853 /* UIKit.framework */,
+				508926ED23E12D7300E90853 /* Foundation.framework */,
+				508926EF23E12D7300E90853 /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		508926F123E12D7300E90853 /* QQMusicLyricsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				508926F723E12D7300E90853 /* QQMusicLyricsProvider.xm */,
+				508926F823E12D7300E90853 /* QQMusicLyricsProvider.mm */,
+				508926F223E12D7300E90853 /* Package */,
+				508926F523E12D7300E90853 /* Supporting Files */,
+			);
+			path = QQMusicLyricsProvider;
+			sourceTree = "<group>";
+		};
+		508926F223E12D7300E90853 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				508926F323E12D7300E90853 /* DEBIAN */,
+				508926FA23E12D7300E90853 /* Library */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		508926F323E12D7300E90853 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				508926F423E12D7300E90853 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		508926F523E12D7300E90853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				508926F623E12D7300E90853 /* QQMusicLyricsProvider-Prefix.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		508926FA23E12D7300E90853 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				508926FB23E12D7300E90853 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		508926FB23E12D7300E90853 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				508926FC23E12D7300E90853 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		508926FC23E12D7300E90853 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				508926FD23E12D7300E90853 /* QQMusicLyricsProvider.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		508926E523E12D7300E90853 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		508926E723E12D7300E90853 /* QQMusicLyricsProvider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5089270023E12D7300E90853 /* Build configuration list for PBXNativeTarget "QQMusicLyricsProvider" */;
+			buildPhases = (
+				508926E223E12D7300E90853 /* ShellScript */,
+				508926E323E12D7300E90853 /* Sources */,
+				508926E423E12D7300E90853 /* Frameworks */,
+				508926E523E12D7300E90853 /* Headers */,
+				508926E623E12D7300E90853 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QQMusicLyricsProvider;
+			productName = QQMusicLyricsProvider;
+			productReference = 508926E823E12D7300E90853 /* QQMusicLyricsProvider.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		508926DE23E12D7300E90853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					508926E723E12D7300E90853 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 508926E123E12D7300E90853 /* Build configuration list for PBXProject "QQMusicLyricsProvider" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 508926DD23E12D7300E90853;
+			productRefGroup = 508926E923E12D7300E90853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				508926E723E12D7300E90853 /* QQMusicLyricsProvider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		508926E223E12D7300E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos\n";
+		};
+		508926E623E12D7300E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		508926E323E12D7300E90853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				508926F923E12D7300E90853 /* QQMusicLyricsProvider.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		508926FE23E12D7300E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"QQMusicLyricsProvider\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		508926FF23E12D7300E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"QQMusicLyricsProvider\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		5089270123E12D7300E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QQMusicLyricsProvider/QQMusicLyricsProvider-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = NO;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = QQMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5089270223E12D7300E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QQMusicLyricsProvider/QQMusicLyricsProvider-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = NO;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = QQMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		508926E123E12D7300E90853 /* Build configuration list for PBXProject "QQMusicLyricsProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				508926FE23E12D7300E90853 /* Release */,
+				508926FF23E12D7300E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5089270023E12D7300E90853 /* Build configuration list for PBXNativeTarget "QQMusicLyricsProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5089270123E12D7300E90853 /* Release */,
+				5089270223E12D7300E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 508926DE23E12D7300E90853 /* Project object */;
+}
