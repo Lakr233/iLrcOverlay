@@ -1,0 +1,383 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5089265E23E1278700E90853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089265D23E1278700E90853 /* UIKit.framework */; };
+		5089266023E1278700E90853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089265F23E1278700E90853 /* Foundation.framework */; };
+		5089266223E1278700E90853 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089266123E1278700E90853 /* CydiaSubstrate.framework */; };
+		5089267123E1278700E90853 /* NeteaseMusicLyricProvider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5089267023E1278700E90853 /* NeteaseMusicLyricProvider.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5089265A23E1278700E90853 /* NeteaseMusicLyricProvider.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = NeteaseMusicLyricProvider.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		5089265D23E1278700E90853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5089265F23E1278700E90853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5089266123E1278700E90853 /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
+		5089266623E1278700E90853 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		5089266E23E1278700E90853 /* NeteaseMusicLyricProvider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NeteaseMusicLyricProvider-Prefix.pch"; path = "../NeteaseMusicLyricProvider-Prefix.pch"; sourceTree = "<group>"; };
+		5089266F23E1278700E90853 /* NeteaseMusicLyricProvider.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = NeteaseMusicLyricProvider.xm; sourceTree = "<group>"; };
+		5089267023E1278700E90853 /* NeteaseMusicLyricProvider.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NeteaseMusicLyricProvider.mm; sourceTree = "<group>"; };
+		5089267423E1278700E90853 /* NeteaseMusicLyricProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NeteaseMusicLyricProvider.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5089265623E1278700E90853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5089265E23E1278700E90853 /* UIKit.framework in Frameworks */,
+				5089266023E1278700E90853 /* Foundation.framework in Frameworks */,
+				5089266223E1278700E90853 /* CydiaSubstrate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5089264F23E1278700E90853 = {
+			isa = PBXGroup;
+			children = (
+				5089266323E1278700E90853 /* NeteaseMusicLyricProvider */,
+				5089265C23E1278700E90853 /* Frameworks */,
+				5089265B23E1278700E90853 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5089265B23E1278700E90853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5089265A23E1278700E90853 /* NeteaseMusicLyricProvider.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5089265C23E1278700E90853 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5089265D23E1278700E90853 /* UIKit.framework */,
+				5089265F23E1278700E90853 /* Foundation.framework */,
+				5089266123E1278700E90853 /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5089266323E1278700E90853 /* NeteaseMusicLyricProvider */ = {
+			isa = PBXGroup;
+			children = (
+				5089266F23E1278700E90853 /* NeteaseMusicLyricProvider.xm */,
+				5089267023E1278700E90853 /* NeteaseMusicLyricProvider.mm */,
+				5089266423E1278700E90853 /* Package */,
+				5089266D23E1278700E90853 /* Supporting Files */,
+			);
+			path = NeteaseMusicLyricProvider;
+			sourceTree = "<group>";
+		};
+		5089266423E1278700E90853 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				5089266523E1278700E90853 /* DEBIAN */,
+				5089266723E1278700E90853 /* Library */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		5089266523E1278700E90853 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				5089266623E1278700E90853 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		5089266723E1278700E90853 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				5089267223E1278700E90853 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		5089266D23E1278700E90853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5089266E23E1278700E90853 /* NeteaseMusicLyricProvider-Prefix.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5089267223E1278700E90853 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				5089267323E1278700E90853 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		5089267323E1278700E90853 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				5089267423E1278700E90853 /* NeteaseMusicLyricProvider.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5089265723E1278700E90853 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5089265923E1278700E90853 /* NeteaseMusicLyricProvider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5089267723E1278700E90853 /* Build configuration list for PBXNativeTarget "NeteaseMusicLyricProvider" */;
+			buildPhases = (
+				5089265423E1278700E90853 /* ShellScript */,
+				5089265523E1278700E90853 /* Sources */,
+				5089265623E1278700E90853 /* Frameworks */,
+				5089265723E1278700E90853 /* Headers */,
+				5089265823E1278700E90853 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NeteaseMusicLyricProvider;
+			productName = NeteaseMusicLyricProvider;
+			productReference = 5089265A23E1278700E90853 /* NeteaseMusicLyricProvider.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5089265023E1278700E90853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					5089265923E1278700E90853 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 5089265323E1278700E90853 /* Build configuration list for PBXProject "NeteaseMusicLyricProvider" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5089264F23E1278700E90853;
+			productRefGroup = 5089265B23E1278700E90853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5089265923E1278700E90853 /* NeteaseMusicLyricProvider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5089265423E1278700E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos";
+		};
+		5089265823E1278700E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5089265523E1278700E90853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5089267123E1278700E90853 /* NeteaseMusicLyricProvider.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5089267523E1278700E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"NeteaseMusicLyricProvider\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5089267623E1278700E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"NeteaseMusicLyricProvider\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		5089267823E1278700E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NeteaseMusicLyricProvider/NeteaseMusicLyricProvider-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 127.0.0.1;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5089267923E1278700E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NeteaseMusicLyricProvider/NeteaseMusicLyricProvider-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 127.0.0.1;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5089265323E1278700E90853 /* Build configuration list for PBXProject "NeteaseMusicLyricProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5089267523E1278700E90853 /* Release */,
+				5089267623E1278700E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5089267723E1278700E90853 /* Build configuration list for PBXNativeTarget "NeteaseMusicLyricProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5089267823E1278700E90853 /* Release */,
+				5089267923E1278700E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5089265023E1278700E90853 /* Project object */;
+}
