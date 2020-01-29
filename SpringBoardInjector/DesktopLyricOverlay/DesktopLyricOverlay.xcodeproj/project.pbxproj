@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5089268923E1290100E90853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268823E1290100E90853 /* UIKit.framework */; };
+		5089268B23E1290100E90853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268A23E1290100E90853 /* Foundation.framework */; };
+		5089268D23E1290100E90853 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268C23E1290100E90853 /* CydiaSubstrate.framework */; };
+		5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */; };
+		508926C323E12BFE00E90853 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C223E12BFE00E90853 /* CFNetwork.framework */; };
+		508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926AA23E12AEE00E90853 /* GCDWebServerResponse.m */; };
+		508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926AD23E12AEE00E90853 /* GCDWebServerErrorResponse.m */; };
+		508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B223E12AEE00E90853 /* GCDWebServerRequest.m */; };
+		508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B323E12AEE00E90853 /* GCDWebServerURLEncodedFormRequest.m */; };
+		508926CA23E12C2300E90853 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B523E12AEE00E90853 /* GCDWebServerMultiPartFormRequest.m */; };
+		508926CB23E12C2300E90853 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B723E12AEE00E90853 /* GCDWebServerDataRequest.m */; };
+		508926CC23E12C2300E90853 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B823E12AEE00E90853 /* GCDWebServerFileResponse.m */; };
+		508926CD23E12C2300E90853 /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926B923E12AEE00E90853 /* GCDWebServerFunctions.m */; };
+		508926CE23E12C2300E90853 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BA23E12AEE00E90853 /* GCDWebServer.m */; };
+		508926CF23E12C2300E90853 /* GCDWebServerDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BB23E12AEE00E90853 /* GCDWebServerDataResponse.m */; };
+		508926D023E12C2300E90853 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BC23E12AEE00E90853 /* GCDWebServerConnection.m */; };
+		508926D123E12C2300E90853 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BD23E12AEE00E90853 /* GCDWebServerFileRequest.m */; };
+		508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */; };
+		508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926D323E12C4B00E90853 /* MobileCoreServices.framework */; platformFilter = ios; };
+		508926D523E12C5300E90853 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C423E12C0500E90853 /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5089268523E1290100E90853 /* DesktopLyricOverlay.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = DesktopLyricOverlay.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		5089268823E1290100E90853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5089268A23E1290100E90853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5089268C23E1290100E90853 /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
+		5089269123E1290100E90853 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		5089269923E1290100E90853 /* DesktopLyricOverlay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DesktopLyricOverlay-Prefix.pch"; path = "../DesktopLyricOverlay-Prefix.pch"; sourceTree = "<group>"; };
+		5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = DesktopLyricOverlay.xm; sourceTree = "<group>"; };
+		5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DesktopLyricOverlay.mm; sourceTree = "<group>"; };
+		5089269F23E1290100E90853 /* DesktopLyricOverlay.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DesktopLyricOverlay.plist; sourceTree = "<group>"; };
+		508926A623E12AEE00E90853 /* GCDWebServerFileResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileResponse.h; sourceTree = "<group>"; };
+		508926A723E12AEE00E90853 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
+		508926A823E12AEE00E90853 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
+		508926A923E12AEE00E90853 /* GCDWebServerDataRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataRequest.h; sourceTree = "<group>"; };
+		508926AA23E12AEE00E90853 /* GCDWebServerResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerResponse.m; sourceTree = "<group>"; };
+		508926AB23E12AEE00E90853 /* GCDWebServerMultiPartFormRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerMultiPartFormRequest.h; sourceTree = "<group>"; };
+		508926AC23E12AEE00E90853 /* GCDWebServerStreamedResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerStreamedResponse.h; sourceTree = "<group>"; };
+		508926AD23E12AEE00E90853 /* GCDWebServerErrorResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerErrorResponse.m; sourceTree = "<group>"; };
+		508926AE23E12AEE00E90853 /* GCDWebServerFileRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileRequest.h; sourceTree = "<group>"; };
+		508926AF23E12AEE00E90853 /* GCDWebServerConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerConnection.h; sourceTree = "<group>"; };
+		508926B023E12AEE00E90853 /* GCDWebServerDataResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataResponse.h; sourceTree = "<group>"; };
+		508926B123E12AEE00E90853 /* GCDWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServer.h; sourceTree = "<group>"; };
+		508926B223E12AEE00E90853 /* GCDWebServerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerRequest.m; sourceTree = "<group>"; };
+		508926B323E12AEE00E90853 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerURLEncodedFormRequest.m; sourceTree = "<group>"; };
+		508926B423E12AEE00E90853 /* GCDWebServerHTTPStatusCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerHTTPStatusCodes.h; sourceTree = "<group>"; };
+		508926B523E12AEE00E90853 /* GCDWebServerMultiPartFormRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerMultiPartFormRequest.m; sourceTree = "<group>"; };
+		508926B623E12AEE00E90853 /* GCDWebServerResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerResponse.h; sourceTree = "<group>"; };
+		508926B723E12AEE00E90853 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataRequest.m; sourceTree = "<group>"; };
+		508926B823E12AEE00E90853 /* GCDWebServerFileResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileResponse.m; sourceTree = "<group>"; };
+		508926B923E12AEE00E90853 /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFunctions.m; sourceTree = "<group>"; };
+		508926BA23E12AEE00E90853 /* GCDWebServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServer.m; sourceTree = "<group>"; };
+		508926BB23E12AEE00E90853 /* GCDWebServerDataResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataResponse.m; sourceTree = "<group>"; };
+		508926BC23E12AEE00E90853 /* GCDWebServerConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerConnection.m; sourceTree = "<group>"; };
+		508926BD23E12AEE00E90853 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
+		508926BE23E12AEE00E90853 /* GCDWebServerErrorResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerErrorResponse.h; sourceTree = "<group>"; };
+		508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerStreamedResponse.m; sourceTree = "<group>"; };
+		508926C023E12AEE00E90853 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
+		508926C123E12AEE00E90853 /* GCDWebServerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDWebServerRequest.h; sourceTree = "<group>"; };
+		508926C223E12BFE00E90853 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		508926C423E12C0500E90853 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		508926C523E12C0B00E90853 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
+		508926D323E12C4B00E90853 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5089268123E1290100E90853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5089268923E1290100E90853 /* UIKit.framework in Frameworks */,
+				508926D523E12C5300E90853 /* libz.tbd in Frameworks */,
+				5089268B23E1290100E90853 /* Foundation.framework in Frameworks */,
+				508926C323E12BFE00E90853 /* CFNetwork.framework in Frameworks */,
+				508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */,
+				5089268D23E1290100E90853 /* CydiaSubstrate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5089267A23E1290100E90853 = {
+			isa = PBXGroup;
+			children = (
+				5089268E23E1290100E90853 /* DesktopLyricOverlay */,
+				5089268723E1290100E90853 /* Frameworks */,
+				5089268623E1290100E90853 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5089268623E1290100E90853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5089268523E1290100E90853 /* DesktopLyricOverlay.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5089268723E1290100E90853 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				508926D323E12C4B00E90853 /* MobileCoreServices.framework */,
+				508926C523E12C0B00E90853 /* libxml2.2.tbd */,
+				508926C423E12C0500E90853 /* libz.tbd */,
+				508926C223E12BFE00E90853 /* CFNetwork.framework */,
+				5089268823E1290100E90853 /* UIKit.framework */,
+				5089268A23E1290100E90853 /* Foundation.framework */,
+				5089268C23E1290100E90853 /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5089268E23E1290100E90853 /* DesktopLyricOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				508926A523E12AEE00E90853 /* GCDWebServer */,
+				5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */,
+				5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */,
+				5089268F23E1290100E90853 /* Package */,
+				5089269823E1290100E90853 /* Supporting Files */,
+			);
+			path = DesktopLyricOverlay;
+			sourceTree = "<group>";
+		};
+		5089268F23E1290100E90853 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				5089269023E1290100E90853 /* DEBIAN */,
+				5089269223E1290100E90853 /* Library */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		5089269023E1290100E90853 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				5089269123E1290100E90853 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		5089269223E1290100E90853 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				5089269D23E1290100E90853 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		5089269823E1290100E90853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5089269923E1290100E90853 /* DesktopLyricOverlay-Prefix.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5089269D23E1290100E90853 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				5089269E23E1290100E90853 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		5089269E23E1290100E90853 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				5089269F23E1290100E90853 /* DesktopLyricOverlay.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		508926A523E12AEE00E90853 /* GCDWebServer */ = {
+			isa = PBXGroup;
+			children = (
+				508926A623E12AEE00E90853 /* GCDWebServerFileResponse.h */,
+				508926A723E12AEE00E90853 /* GCDWebServerFunctions.h */,
+				508926A823E12AEE00E90853 /* GCDWebServerPrivate.h */,
+				508926A923E12AEE00E90853 /* GCDWebServerDataRequest.h */,
+				508926AA23E12AEE00E90853 /* GCDWebServerResponse.m */,
+				508926AB23E12AEE00E90853 /* GCDWebServerMultiPartFormRequest.h */,
+				508926AC23E12AEE00E90853 /* GCDWebServerStreamedResponse.h */,
+				508926AD23E12AEE00E90853 /* GCDWebServerErrorResponse.m */,
+				508926AE23E12AEE00E90853 /* GCDWebServerFileRequest.h */,
+				508926AF23E12AEE00E90853 /* GCDWebServerConnection.h */,
+				508926B023E12AEE00E90853 /* GCDWebServerDataResponse.h */,
+				508926B123E12AEE00E90853 /* GCDWebServer.h */,
+				508926B223E12AEE00E90853 /* GCDWebServerRequest.m */,
+				508926B323E12AEE00E90853 /* GCDWebServerURLEncodedFormRequest.m */,
+				508926B423E12AEE00E90853 /* GCDWebServerHTTPStatusCodes.h */,
+				508926B523E12AEE00E90853 /* GCDWebServerMultiPartFormRequest.m */,
+				508926B623E12AEE00E90853 /* GCDWebServerResponse.h */,
+				508926B723E12AEE00E90853 /* GCDWebServerDataRequest.m */,
+				508926B823E12AEE00E90853 /* GCDWebServerFileResponse.m */,
+				508926B923E12AEE00E90853 /* GCDWebServerFunctions.m */,
+				508926BA23E12AEE00E90853 /* GCDWebServer.m */,
+				508926BB23E12AEE00E90853 /* GCDWebServerDataResponse.m */,
+				508926BC23E12AEE00E90853 /* GCDWebServerConnection.m */,
+				508926BD23E12AEE00E90853 /* GCDWebServerFileRequest.m */,
+				508926BE23E12AEE00E90853 /* GCDWebServerErrorResponse.h */,
+				508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */,
+				508926C023E12AEE00E90853 /* GCDWebServerURLEncodedFormRequest.h */,
+				508926C123E12AEE00E90853 /* GCDWebServerRequest.h */,
+			);
+			path = GCDWebServer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5089268223E1290100E90853 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5089268423E1290100E90853 /* DesktopLyricOverlay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 508926A223E1290100E90853 /* Build configuration list for PBXNativeTarget "DesktopLyricOverlay" */;
+			buildPhases = (
+				5089267F23E1290100E90853 /* ShellScript */,
+				5089268023E1290100E90853 /* Sources */,
+				5089268123E1290100E90853 /* Frameworks */,
+				5089268223E1290100E90853 /* Headers */,
+				5089268323E1290100E90853 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DesktopLyricOverlay;
+			productName = DesktopLyricOverlay;
+			productReference = 5089268523E1290100E90853 /* DesktopLyricOverlay.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5089267B23E1290100E90853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					5089268423E1290100E90853 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 5089267E23E1290100E90853 /* Build configuration list for PBXProject "DesktopLyricOverlay" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5089267A23E1290100E90853;
+			productRefGroup = 5089268623E1290100E90853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5089268423E1290100E90853 /* DesktopLyricOverlay */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5089267F23E1290100E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos";
+		};
+		5089268323E1290100E90853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5089268023E1290100E90853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */,
+				508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */,
+				508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */,
+				508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */,
+				508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
+				508926CA23E12C2300E90853 /* GCDWebServerMultiPartFormRequest.m in Sources */,
+				508926CB23E12C2300E90853 /* GCDWebServerDataRequest.m in Sources */,
+				508926CC23E12C2300E90853 /* GCDWebServerFileResponse.m in Sources */,
+				508926CD23E12C2300E90853 /* GCDWebServerFunctions.m in Sources */,
+				508926CE23E12C2300E90853 /* GCDWebServer.m in Sources */,
+				508926CF23E12C2300E90853 /* GCDWebServerDataResponse.m in Sources */,
+				508926D023E12C2300E90853 /* GCDWebServerConnection.m in Sources */,
+				508926D123E12C2300E90853 /* GCDWebServerFileRequest.m in Sources */,
+				508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		508926A023E1290100E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"DesktopLyricOverlay\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		508926A123E1290100E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"DesktopLyricOverlay\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		508926A323E1290100E90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DesktopLyricOverlay/DesktopLyricOverlay-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		508926A423E1290100E90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DesktopLyricOverlay/DesktopLyricOverlay-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = YES;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDevicePassword = alpine;
+				MonkeyDevDevicePort = 2222;
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5089267E23E1290100E90853 /* Build configuration list for PBXProject "DesktopLyricOverlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				508926A023E1290100E90853 /* Release */,
+				508926A123E1290100E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		508926A223E1290100E90853 /* Build configuration list for PBXNativeTarget "DesktopLyricOverlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				508926A323E1290100E90853 /* Release */,
+				508926A423E1290100E90853 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5089267B23E1290100E90853 /* Project object */;
+}
