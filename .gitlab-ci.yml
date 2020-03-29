@@ -28,6 +28,12 @@ build:
     - xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
     - cp Packages/*.deb $SAFELOCATION/artifacts/
 
+    # QMRoutine
+    - cd $SAFELOCATION
+    - cd QQMusicRoutine/QQMusicLyricsProvider
+    - xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
+    - cp Packages/*.deb $SAFELOCATION/artifacts/
+
     # CLEAN UP JOBS
     - cd $SAFELOCATION
     - ls -la artifacts

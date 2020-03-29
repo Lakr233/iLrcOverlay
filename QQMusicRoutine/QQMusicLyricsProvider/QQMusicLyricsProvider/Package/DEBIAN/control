@@ -3,7 +3,7 @@ Name: QQMusicLyricsProvider
 Version: 0.1-1
 Description: 
 Section: System
-Depends: firmware (>= 5.0), mobilesubstrate
+Depends: firmware (>= 5.0), mobilesubstrate, wiki.qaq.DesktopLyricOverlay
 Conflicts: 
 Replaces: 
 Priority: optional
