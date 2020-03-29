@@ -14,6 +14,7 @@ build:
       - artifacts/
   script:
     - SAFELOCATION=$(pwd) && echo $SAFELOCATION
+    - rm -rf artifacts
     - mkdir artifacts    
 
     # SpringBoad Injector
