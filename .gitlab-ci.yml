@@ -1,5 +1,9 @@
 # CI for Xcode Builder
 
+artifacts:
+  paths:
+    - artifacts/
+
 before_script:
   - uname -a
   - whoami
@@ -11,11 +15,22 @@ build:
     - iOS
   script:
     - SAFELOCATION=$(pwd) && echo $SAFELOCATION
+    - mkdir artifacts    
+
+    # SpringBoad Injector
     - cd $SAFELOCATION
-    - cd SpringBoardInjector/DesktopLyricOverlay && xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
+    - cd SpringBoardInjector/DesktopLyricOverlay
+    - xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
+    - cp Packages/*.deb $SAFELOCATION/artifacts/
+
+    # NMRoutine
     - cd $SAFELOCATION
-    - cd NMRoutine/NeteaseMusicLyricProvider && xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
+    - cd NMRoutine/NeteaseMusicLyricProvider
+    - xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO" MonkeyDevInstallOnProfiling="NO" MonkeyDevInstallOnAnyBuild="NO" MonkeyDevCopyOnBuild="NO" MonkeyDevClearUiCacheOnInstall="NO" MonkeyDevBuildPackageOnAnyBuild="YES"
+    - cp Packages/*.deb $SAFELOCATION/artifacts/
 
-
-
+    # CLEAN UP JOBS
+    - cd $SAFELOCATION
+    - ls -la artifacts
+    - time
 
