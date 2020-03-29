@@ -1,9 +1,5 @@
 # CI for Xcode Builder
 
-artifacts:
-  paths:
-    - artifacts/
-
 before_script:
   - uname -a
   - whoami
@@ -13,6 +9,9 @@ before_script:
 build:
   tags:
     - iOS
+  artifacts:
+    paths:
+      - artifacts/
   script:
     - SAFELOCATION=$(pwd) && echo $SAFELOCATION
     - mkdir artifacts    
