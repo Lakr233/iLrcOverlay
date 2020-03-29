@@ -299,6 +299,10 @@
 		5089267823E1278700E90853 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -311,7 +315,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = YES;
-				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDeviceIP = 127.0.0.1;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
@@ -325,6 +329,10 @@
 		5089267923E1278700E90853 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -337,7 +345,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = YES;
-				MonkeyDevDeviceIP = 0.0.0.0;
+				MonkeyDevDeviceIP = 127.0.0.1;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
