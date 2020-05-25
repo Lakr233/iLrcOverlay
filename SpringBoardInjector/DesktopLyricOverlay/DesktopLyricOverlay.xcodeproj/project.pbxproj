@@ -27,6 +27,8 @@
 		508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */; };
 		508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926D323E12C4B00E90853 /* MobileCoreServices.framework */; platformFilter = ios; };
 		508926D523E12C5300E90853 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C423E12C0500E90853 /* libz.tbd */; };
+		50EA8103247C71DD0051B92D /* PassthroughView.h in Headers */ = {isa = PBXBuildFile; fileRef = 50EA8101247C71DD0051B92D /* PassthroughView.h */; };
+		50EA8104247C71DD0051B92D /* PassthroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EA8102247C71DD0051B92D /* PassthroughView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		508926C423E12C0500E90853 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		508926C523E12C0B00E90853 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		508926D323E12C4B00E90853 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		50EA8101247C71DD0051B92D /* PassthroughView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassthroughView.h; sourceTree = "<group>"; };
+		50EA8102247C71DD0051B92D /* PassthroughView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassthroughView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				508926A523E12AEE00E90853 /* GCDWebServer */,
+				50EA8101247C71DD0051B92D /* PassthroughView.h */,
+				50EA8102247C71DD0051B92D /* PassthroughView.m */,
 				5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */,
 				5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */,
 				5089268F23E1290100E90853 /* Package */,
@@ -224,6 +230,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EA8103247C71DD0051B92D /* PassthroughView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +331,7 @@
 			files = (
 				5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */,
 				508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */,
+				50EA8104247C71DD0051B92D /* PassthroughView.m in Sources */,
 				508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */,
 				508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */,
 				508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */,

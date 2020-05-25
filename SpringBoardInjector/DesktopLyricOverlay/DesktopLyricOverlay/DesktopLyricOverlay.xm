@@ -9,12 +9,15 @@
 #import "./GCDWebServer/GCDWebServer.h"
 #import "./GCDWebServer/GCDWebServerDataResponse.h"
 
+#import "./PassthroughView.h"
+
 NSString* _session = @"";
 
 static UIWindow* _sharedWindow;
 static UILabel* _sharedLabel;
 
 %hook SpringBoard
+
 - (void)applicationDidFinishLaunching:(id)arg1 {
     %orig;
     
@@ -30,7 +33,7 @@ static UILabel* _sharedLabel;
             }
         }
         if (!_sharedWindow) {
-            _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
+            _sharedWindow = [[PassthroughWindow alloc] initWithFrame:CGRectMake(0,
                                                                        [[UIScreen mainScreen] bounds].size.height - 22,
                                                                        [[UIScreen mainScreen] bounds].size.width,
                                                                        22)];
@@ -103,3 +106,5 @@ static UILabel* _sharedLabel;
     [_s startWithPort:6996 bonjourName:nil];
     
 }
+
+%end
