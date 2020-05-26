@@ -1,4 +1,4 @@
-#line 1 "/Users/qaq/Desktop/Lrcs/NeteaseMusicRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 1 "/Users/Brendon/Desktop/iosreversecode/ilrcoverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 #if TARGET_OS_SIMULATOR
@@ -71,7 +71,7 @@ static void updateLyric(id manager, signed index) {
 @class NMPlayerManager; 
 static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void (*_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 49 "/Users/qaq/Desktop/Lrcs/NeteaseMusicRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 49 "/Users/Brendon/Desktop/iosreversecode/ilrcoverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, signed a3) {
@@ -98,4 +98,4 @@ static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setLyricsArray:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setLyricsArray$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$);} }
-#line 73 "/Users/qaq/Desktop/Lrcs/NeteaseMusicRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 73 "/Users/Brendon/Desktop/iosreversecode/ilrcoverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"

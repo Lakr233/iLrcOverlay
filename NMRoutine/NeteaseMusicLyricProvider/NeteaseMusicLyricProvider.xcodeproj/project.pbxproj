@@ -304,7 +304,7 @@
 					arm64e,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CQ2J5N72GP;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -334,7 +334,7 @@
 					arm64e,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CQ2J5N72GP;
 				DYLIB_COMPATIBILITY_VERSION = 1;
