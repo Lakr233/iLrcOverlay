@@ -11,7 +11,6 @@ Follow up to forum thread [http://iosre.com/t/topic/16428](http://iosre.com/t/to
 - NeteaseMusic
 - NeteaseMusicHD
 - QQMusic
-- QQMusicHD
 
 ## Contributor
 Contributor in this project may not show in commit history due to sync with my private GitLab instance for [CI/CD](https://lab.qaq.wiki/Lakr233/ilrcoverlay/pipelines) operations, but will be listed here.
