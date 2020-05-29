@@ -8,5 +8,5 @@ Architecture: iphoneos-arm
 Conflicts: wiki.qaq.DesktopLyricOverlay, wiki.qaq.NeteaseMusicLyricProvider, wiki.qaq.QQMusicLyricsProvider
 Author: Lakr Aream <master@233owo.com>
 Depiction: https://moreinfo.thebigboss.org/moreinfo/depiction.php?file=neteasemusiclyricsoverlayDp
-Version: 2.0
+Version: 2.1
 Maintainer: Lakr Aream <master@233owo.com>
