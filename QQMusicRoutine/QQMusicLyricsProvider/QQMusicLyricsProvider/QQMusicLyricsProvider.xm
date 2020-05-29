@@ -10,88 +10,107 @@
 #include <notify.h>
 
 OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
-//Cuctom
-@interface MyLyric:NSObject
-@property(nonatomic)NSString* text;
+
+// Cuctom
+@interface MyLyric: NSObject
+
+@property(nonatomic) NSString* text;
 @property long long startTime;
-@end
-@implementation MyLyric
+
 @end
 
-//Header
+@implementation MyLyric
+
+@end
+
+// Header
+
 @interface AudioPlayManager
-- (double)curTime;
+
 @property(retain, nonatomic) id currentSong; // @synthesize currentSong;
+
 + (id)sharedAudioPlayManager;
+- (double)curTime;
+
 @end
 
 @interface KSSentence
+
 @property(nonatomic) long long startTime; // @synthesize startTime=_startTime;
-@property(retain, nonatomic) NSString *text; // @synthesize text=_text;
+@property(retain, nonatomic) NSString* text; // @synthesize text=_text;
 @property(nonatomic) int sentenceTransType;
+
 @end
 
 
 @interface KSLyric
-@property(retain, nonatomic) NSMutableArray *sentencesArray; // @synthesize
+
+@property(retain, nonatomic) NSMutableArray* sentencesArray; // @synthesize
 @property(nonatomic) int lyricFormat;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
+@property(retain, nonatomic) NSString* title; // @synthesize title=_title;
+
 @end
 
 
 @interface SongInfo
+
 - (id)song_Name;
+
 @end
 
 @interface LocalLyricObject
 
-@property(retain, nonatomic) KSLyric *originLyric; // @synthesize originLyric=_originLyric;
+@property(retain, nonatomic) KSLyric* originLyric; // @synthesize originLyric=_originLyric;
 
 @end
 
 //global
-NSMutableDictionary *allLyrics;
+NSMutableDictionary* allLyrics;
 double lstTime=0;
 MyLyric* lstLyric;
 
 //hook
 %group QQMusicHook
+
 %hook AudioPlayManager
+
 - (void)updateProgress:(id)arg1 {
-    %orig;
-    double curTime=[self curTime]*1000;
-    double diff=curTime-lstTime;
-    if(diff<600&&diff>-1)return;
-    lstTime=curTime;
     
-    NSString*_lrc=0;
-    NSArray* lyricArray=[allLyrics objectForKey:[[self currentSong] song_Name]];
-    if(!lyricArray){
-        if(![[lstLyric text] isEqualToString:@" "]){
-            lstLyric=[MyLyric alloc];
+    %orig;
+
+    double curTime = [self curTime] * 1000;
+    double diff = curTime - lstTime;
+    if (diff < 600 && diff > -1)
+        return;
+    lstTime = curTime;
+    
+    NSString* _lrc = 0;
+    NSArray* lyricArray = [allLyrics objectForKey:[[self currentSong] song_Name]];
+    if (!lyricArray) {
+        if (![[lstLyric text] isEqualToString:@" "]) {
+            lstLyric = [MyLyric alloc];
             [lstLyric setText:@" "];
-            _lrc=[lstLyric text];
+            _lrc = [lstLyric text];
         }
-    }
-    else{
+    } else {
         MyLyric* curLyric=0;
-        
-        if(lyricArray){
+        if (lyricArray) {
             for(id myLyric in lyricArray){
-                if([myLyric startTime]>curTime) break;
+                if ([myLyric startTime] > curTime) 
+                    break;
                 curLyric=myLyric;
             }
         }
-        if(curLyric&&curLyric!=lstLyric) {
-            lstLyric=curLyric;
-            _lrc=[lstLyric text];
+        if (curLyric && curLyric != lstLyric) {
+            lstLyric = curLyric;
+            _lrc = [lstLyric text];
         }
     }
+
     if(_lrc){
-        // Web Stuffs
-        NSData *data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
-        NSString *stringBase64 = [data base64EncodedStringWithOptions:0];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        NSData* data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
+        NSString* stringBase64 = [data base64EncodedStringWithOptions:0];
+        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
         [request setHTTPMethod:@"GET"];
         NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
         [request setURL:[NSURL URLWithString:reqUrl]];
@@ -102,45 +121,42 @@ MyLyric* lstLyric;
         }];
     }
     
-    
 }
-%end
+
+%end // AudioPlayManager
+
 %hook LyricManager
-- (id)getLyricObjectFromLocal:(id)arg1 lyricFrom:(unsigned long long)arg2 {
-//    NSLog(@"getLyricObjectFromLocal:(id)%@ lyricFrom:(unsigned long long)%lld start",arg1,arg2);
+
+-(id)getLyricObjectFromLocal:(id)arg1 lyricFrom:(unsigned long long)arg2 {
+
     id r = %orig;
-//    NSLog(@" = %@", r);
 
-    if(r){
-        KSLyric*l=[r originLyric];
-        NSMutableArray *sentencesArray=l.sentencesArray;
-//        NSLog(@"text: %@",[sentencesArray[0] text]);
-//        NSLog(@"text: %@",[sentencesArray[1] text]);
-//        NSLog(@"text: %@",[sentencesArray[2] text]);
-
-
+    if (r) {
+        KSLyric* l = [r originLyric];
+        NSMutableArray* sentencesArray=l.sentencesArray;
         NSString* lyricName=[arg1 song_Name];
-//        NSLog(@"name:%@",lyricName);
         
-        NSMutableArray *tempMyLyrics=[NSMutableArray arrayWithCapacity:100];
+        NSMutableArray* tempMyLyrics=[NSMutableArray arrayWithCapacity:1024];
         for(id sentence in sentencesArray){
-            MyLyric *myLyric=[MyLyric alloc];
+            MyLyric* myLyric=[MyLyric alloc];
             [myLyric setText:[sentence text]];
             [myLyric setStartTime:[sentence startTime]];
             [tempMyLyrics addObject:myLyric];
         }
+
         [allLyrics setValue:tempMyLyrics forKey:lyricName];
     }
+
     return r;
     
 }
-%end
 
-%end //QQMusicHook
+%end // LyricManager
 
-//ctor
-%ctor{
+%end // QQMusicHook
+
+%ctor {
     NSLog(@"[Lakr233] QQMusic Lyric Provider Loaded!");
     %init(QQMusicHook);
-    allLyrics=[NSMutableDictionary dictionaryWithCapacity:100];
+    allLyrics=[NSMutableDictionary dictionaryWithCapacity:1024];
 }
