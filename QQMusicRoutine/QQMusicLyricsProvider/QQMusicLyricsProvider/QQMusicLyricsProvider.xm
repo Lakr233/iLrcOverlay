@@ -151,6 +151,30 @@ MyLyric* lstLyric;
     
 }
 
+-(id)getLyricObjectFromLocal:(id)arg1 {
+
+    id r = %orig;
+
+    if (r) {
+        KSLyric* l = [r originLyric];
+        NSMutableArray* sentencesArray=l.sentencesArray;
+        NSString* lyricName=[arg1 song_Name];
+        
+        NSMutableArray* tempMyLyrics=[NSMutableArray arrayWithCapacity:1024];
+        for(id sentence in sentencesArray){
+            MyLyric* myLyric=[MyLyric alloc];
+            [myLyric setText:[sentence text]];
+            [myLyric setStartTime:[sentence startTime]];
+            [tempMyLyrics addObject:myLyric];
+        }
+
+        [allLyrics setValue:tempMyLyrics forKey:lyricName];
+    }
+
+    return r;
+    
+}
+
 %end // LyricManager
 
 %end // QQMusicHook
