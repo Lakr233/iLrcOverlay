@@ -1,4 +1,4 @@
-#line 1 "/Users/qaq/Documents/GitLab/ilrcoverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
+#line 1 "/Users/qaq/Documents/GitHub/iLrcOverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
 
 
 #if TARGET_OS_SIMULATOR
@@ -92,11 +92,11 @@ MyLyric* lstLyric;
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class LyricManager; @class AudioPlayManager; 
+@class AudioPlayManager; @class LyricManager; 
 
 
-#line 73 "/Users/qaq/Documents/GitLab/ilrcoverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
-static void (*_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$)(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$QQMusicHook$AudioPlayManager$updateProgress$(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static id (*_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$)(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); 
+#line 73 "/Users/qaq/Documents/GitHub/iLrcOverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
+static void (*_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$)(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$QQMusicHook$AudioPlayManager$updateProgress$(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static id (*_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$)(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); static id (*_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$)(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id); static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id); 
 
 
 
@@ -159,12 +159,36 @@ static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFr
 
     if (r) {
         KSLyric* l = [r originLyric];
-        NSMutableArray* sentencesArray=l.sentencesArray;
-        NSString* lyricName=[arg1 song_Name];
+        NSMutableArray* sentencesArray = l.sentencesArray;
+        NSString* lyricName = [arg1 song_Name];
         
-        NSMutableArray* tempMyLyrics=[NSMutableArray arrayWithCapacity:1024];
-        for(id sentence in sentencesArray){
-            MyLyric* myLyric=[MyLyric alloc];
+        NSMutableArray* tempMyLyrics = [NSMutableArray arrayWithCapacity:1024];
+        for (id sentence in sentencesArray) {
+            MyLyric* myLyric = [MyLyric alloc];
+            [myLyric setText:[sentence text]];
+            [myLyric setStartTime:[sentence startTime]];
+            [tempMyLyrics addObject:myLyric];
+        }
+
+        [allLyrics setValue:tempMyLyrics forKey:lyricName];
+    }
+
+    return r;
+    
+}
+
+static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
+
+    id r = _logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$(self, _cmd, arg1);
+
+    if (r) {
+        KSLyric* l = [r originLyric];
+        NSMutableArray* sentencesArray = l.sentencesArray;
+        NSString* lyricName = [arg1 song_Name];
+        
+        NSMutableArray* tempMyLyrics = [NSMutableArray arrayWithCapacity:1024];
+        for (id sentence in sentencesArray) {
+            MyLyric* myLyric = [MyLyric alloc];
             [myLyric setText:[sentence text]];
             [myLyric setStartTime:[sentence startTime]];
             [tempMyLyrics addObject:myLyric];
@@ -181,8 +205,8 @@ static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFr
 
  
 
-static __attribute__((constructor)) void _logosLocalCtor_4d0914bd(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_992005e9(int __unused argc, char __unused **argv, char __unused **envp) {
     NSLog(@"[Lakr233] QQMusic Lyric Provider Loaded!");
-    {Class _logos_class$QQMusicHook$AudioPlayManager = objc_getClass("AudioPlayManager"); MSHookMessageEx(_logos_class$QQMusicHook$AudioPlayManager, @selector(updateProgress:), (IMP)&_logos_method$QQMusicHook$AudioPlayManager$updateProgress$, (IMP*)&_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$);Class _logos_class$QQMusicHook$LyricManager = objc_getClass("LyricManager"); MSHookMessageEx(_logos_class$QQMusicHook$LyricManager, @selector(getLyricObjectFromLocal:lyricFrom:), (IMP)&_logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$, (IMP*)&_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$);}
+    {Class _logos_class$QQMusicHook$AudioPlayManager = objc_getClass("AudioPlayManager"); MSHookMessageEx(_logos_class$QQMusicHook$AudioPlayManager, @selector(updateProgress:), (IMP)&_logos_method$QQMusicHook$AudioPlayManager$updateProgress$, (IMP*)&_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$);Class _logos_class$QQMusicHook$LyricManager = objc_getClass("LyricManager"); MSHookMessageEx(_logos_class$QQMusicHook$LyricManager, @selector(getLyricObjectFromLocal:lyricFrom:), (IMP)&_logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$, (IMP*)&_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$);MSHookMessageEx(_logos_class$QQMusicHook$LyricManager, @selector(getLyricObjectFromLocal:), (IMP)&_logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$, (IMP*)&_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$);}
     allLyrics=[NSMutableDictionary dictionaryWithCapacity:1024];
 }
