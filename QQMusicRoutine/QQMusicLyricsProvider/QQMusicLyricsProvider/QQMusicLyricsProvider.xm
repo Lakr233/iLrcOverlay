@@ -133,12 +133,12 @@ MyLyric* lstLyric;
 
     if (r) {
         KSLyric* l = [r originLyric];
-        NSMutableArray* sentencesArray=l.sentencesArray;
-        NSString* lyricName=[arg1 song_Name];
+        NSMutableArray* sentencesArray = l.sentencesArray;
+        NSString* lyricName = [arg1 song_Name];
         
-        NSMutableArray* tempMyLyrics=[NSMutableArray arrayWithCapacity:1024];
-        for(id sentence in sentencesArray){
-            MyLyric* myLyric=[MyLyric alloc];
+        NSMutableArray* tempMyLyrics = [NSMutableArray arrayWithCapacity:1024];
+        for (id sentence in sentencesArray) {
+            MyLyric* myLyric = [MyLyric alloc];
             [myLyric setText:[sentence text]];
             [myLyric setStartTime:[sentence startTime]];
             [tempMyLyrics addObject:myLyric];
@@ -157,12 +157,12 @@ MyLyric* lstLyric;
 
     if (r) {
         KSLyric* l = [r originLyric];
-        NSMutableArray* sentencesArray=l.sentencesArray;
-        NSString* lyricName=[arg1 song_Name];
+        NSMutableArray* sentencesArray = l.sentencesArray;
+        NSString* lyricName = [arg1 song_Name];
         
-        NSMutableArray* tempMyLyrics=[NSMutableArray arrayWithCapacity:1024];
-        for(id sentence in sentencesArray){
-            MyLyric* myLyric=[MyLyric alloc];
+        NSMutableArray* tempMyLyrics = [NSMutableArray arrayWithCapacity:1024];
+        for (id sentence in sentencesArray) {
+            MyLyric* myLyric = [MyLyric alloc];
             [myLyric setText:[sentence text]];
             [myLyric setStartTime:[sentence startTime]];
             [tempMyLyrics addObject:myLyric];
