@@ -10,8 +10,8 @@
 
 OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
 
-bool booted = false;
-NSArray* bootedLrcCache;
+//bool booted = false;
+//NSArray* bootedLrcCache;
 
 static bool useTranslate = false; // DONT MODIFY THIS
 static bool useWebHook = false;
@@ -38,23 +38,16 @@ static void updateLyric(id manager, signed index) {
     });
     
     NSArray *lyricsArray;
-    if (bootedLrcCache) {
-        lyricsArray = [bootedLrcCache mutableCopy];
-        unsigned long check = [lyricsArray count];
-        if (index < 0 || index >= check) {
-            bootedLrcCache = NULL;
-        }
+    if ([manager respondsToSelector:NSSelectorFromString(@"lyricsArray")]) {
+        lyricsArray = [manager valueForKey:@"_lyricsArray"];
+    } else {
+        lyricsArray = [[manager valueForKey:@"_lyricModel"] valueForKey:@"_lyricList"];
     }
-    
-    if (!bootedLrcCache) {
-        SEL _laSel = NSSelectorFromString(@"lyricsArray");
-        id _laSelVoucher1 = objc_msgSend(manager, _laSel);
-        lyricsArray = objc_retainAutoreleaseReturnValue(_laSelVoucher1);
-    }
+    if (!lyricsArray)
+        return;
     
     unsigned long check = [lyricsArray count];
     if (index < 0 || index >= check) {
-        bootedLrcCache = NULL;
         return;
     }
     
@@ -77,18 +70,24 @@ static void updateLyric(id manager, signed index) {
     // Web Stuffs
     NSData *data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
     NSString *stringBase64 = [data base64EncodedStringWithOptions:0];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
-    [request setURL:[NSURL URLWithString:reqUrl]];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue alloc]
-                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        return;
-    }];
+    while (true) {
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setHTTPMethod:@"GET"];
+        NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
+        [request setURL:[NSURL URLWithString:reqUrl]];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue alloc]
+                               completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            return;
+        }];
+        break;
+    }
     
     if (useWebHook && [webHookTarget hasPrefix:@"http"]) {
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setHTTPMethod:@"GET"];
         NSString* reqUrl = [[NSString alloc] initWithFormat:@"%@/SETLRC?param=%@", webHookTarget, stringBase64];
+//        NSLog(@"[Lakr233] Sending to %@", reqUrl);
         [request setURL:[NSURL URLWithString:reqUrl]];
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue alloc]
@@ -105,20 +104,20 @@ static void updateLyric(id manager, signed index) {
     return %orig;
 }
     
--(void)setLyricsArray:(id)a3 {
-    if (!booted && !bootedLrcCache) {
-        bootedLrcCache = (NSArray*)a3;
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                       sleep(5);
-                       booted = true;
-                       });
-        // 真神奇 网易初始化两首歌的歌词
-    }
-    if (booted && bootedLrcCache && bootedLrcCache != (NSArray*)a3) {
-        bootedLrcCache = NULL;
-    }
-    return %orig;
-}
+//-(void)setLyricsArray:(id)a3 {
+//    if (!booted && !bootedLrcCache) {
+//        bootedLrcCache = (NSArray*)a3;
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                       sleep(5);
+//                       booted = true;
+//                       });
+//        // 真神奇 网易初始化两首歌的歌词
+//    }
+//    if (booted && bootedLrcCache && bootedLrcCache != (NSArray*)a3) {
+//        bootedLrcCache = NULL;
+//    }
+//    return %orig;
+//}
 
 %end
 
