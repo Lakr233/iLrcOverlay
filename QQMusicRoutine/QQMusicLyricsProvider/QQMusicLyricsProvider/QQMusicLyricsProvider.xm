@@ -11,6 +11,22 @@
 
 OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
 
+static bool useWebHook = false;
+static NSString* webHookTarget = @"";
+
+static void _reloadSettings() {
+    
+    NSString *bundleId = @"wiki.qaq.QQRoutine";
+    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    useWebHook = [settings[@"EnableWebHook"] boolValue];
+    webHookTarget = settings[@"WebHookURL"];
+
+//    NSLog(@"[Lakr233] UseTranslate:%d, EnableWebHook:%d, WebHookURL:%@", useTranslate, useWebHook, webHookTarget);
+    
+}
+
 // Cuctom
 @interface MyLyric: NSObject
 
@@ -76,6 +92,10 @@ MyLyric* lstLyric;
 
 - (void)updateProgress:(id)arg1 {
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _reloadSettings(); // Bad for performance but works greate
+    });
+    
     %orig;
 
     double curTime = [self curTime] * 1000;
@@ -110,15 +130,29 @@ MyLyric* lstLyric;
     if(_lrc){
         NSData* data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
         NSString* stringBase64 = [data base64EncodedStringWithOptions:0];
-        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
-        [request setHTTPMethod:@"GET"];
-        NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
-        [request setURL:[NSURL URLWithString:reqUrl]];
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue alloc]
-                               completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-            return;
-        }];
+        if (true) {
+            NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+            [request setHTTPMethod:@"GET"];
+            NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
+            [request setURL:[NSURL URLWithString:reqUrl]];
+            [NSURLConnection sendAsynchronousRequest:request
+                                               queue:[NSOperationQueue alloc]
+                                   completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                return;
+            }];
+        }
+
+        if (useWebHook && [webHookTarget hasPrefix:@"http"]) {
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setHTTPMethod:@"GET"];
+            NSString* reqUrl = [[NSString alloc] initWithFormat:@"%@/SETLRC?param=%@", webHookTarget, stringBase64];
+            [request setURL:[NSURL URLWithString:reqUrl]];
+            [NSURLConnection sendAsynchronousRequest:request
+                                               queue:[NSOperationQueue alloc]
+                                   completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                return;
+            }];
+        }
     }
     
 }
@@ -180,7 +214,8 @@ MyLyric* lstLyric;
 %end // QQMusicHook
 
 %ctor {
-    NSLog(@"[Lakr233] QQMusic Lyric Provider Loaded!");
+//    NSLog(@"[Lakr233] QQMusic Lyric Provider Loaded!");
     %init(QQMusicHook);
-    allLyrics=[NSMutableDictionary dictionaryWithCapacity:1024];
+    allLyrics=[NSMutableDictionary dictionaryWithCapacity:2048];
+    _reloadSettings();
 }

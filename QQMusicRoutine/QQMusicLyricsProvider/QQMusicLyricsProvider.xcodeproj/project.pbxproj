@@ -23,6 +23,8 @@
 		508926F723E12D7300E90853 /* QQMusicLyricsProvider.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = QQMusicLyricsProvider.xm; sourceTree = "<group>"; };
 		508926F823E12D7300E90853 /* QQMusicLyricsProvider.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = QQMusicLyricsProvider.mm; sourceTree = "<group>"; };
 		508926FD23E12D7300E90853 /* QQMusicLyricsProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QQMusicLyricsProvider.plist; sourceTree = "<group>"; };
+		50C2904024E72F7500738E86 /* QQMusicLyricProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QQMusicLyricProvider.plist; sourceTree = "<group>"; };
+		50C2904124E72F7500738E86 /* QQMusicLyricProvider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQMusicLyricProvider.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		508926FA23E12D7300E90853 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				50C2903E24E72F7500738E86 /* PreferenceLoader */,
 				508926FB23E12D7300E90853 /* MobileSubstrate */,
 			);
 			path = Library;
@@ -124,6 +127,23 @@
 				508926FD23E12D7300E90853 /* QQMusicLyricsProvider.plist */,
 			);
 			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		50C2903E24E72F7500738E86 /* PreferenceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				50C2903F24E72F7500738E86 /* Preferences */,
+			);
+			path = PreferenceLoader;
+			sourceTree = "<group>";
+		};
+		50C2903F24E72F7500738E86 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				50C2904024E72F7500738E86 /* QQMusicLyricProvider.plist */,
+				50C2904124E72F7500738E86 /* QQMusicLyricProvider.png */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +330,7 @@
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
-				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevCopyOnBuild = NO;
 				MonkeyDevDeviceIP = 0.0.0.0;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
@@ -336,7 +356,7 @@
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
-				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevCopyOnBuild = NO;
 				MonkeyDevDeviceIP = 0.0.0.0;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
