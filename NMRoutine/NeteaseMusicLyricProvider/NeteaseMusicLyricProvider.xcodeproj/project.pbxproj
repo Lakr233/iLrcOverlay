@@ -23,6 +23,8 @@
 		5089266F23E1278700E90853 /* NeteaseMusicLyricProvider.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = NeteaseMusicLyricProvider.xm; sourceTree = "<group>"; };
 		5089267023E1278700E90853 /* NeteaseMusicLyricProvider.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NeteaseMusicLyricProvider.mm; sourceTree = "<group>"; };
 		5089267423E1278700E90853 /* NeteaseMusicLyricProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NeteaseMusicLyricProvider.plist; sourceTree = "<group>"; };
+		50BE7EEA24E70D2F00F76999 /* NeteaseMusicLyricProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NeteaseMusicLyricProvider.plist; sourceTree = "<group>"; };
+		50BE7EEB24E70D2F00F76999 /* NeteaseMusicLyricProvider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NeteaseMusicLyricProvider.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		5089266723E1278700E90853 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				50BE7EE324E70CF700F76999 /* PreferenceLoader */,
 				5089267223E1278700E90853 /* MobileSubstrate */,
 			);
 			path = Library;
@@ -124,6 +127,23 @@
 				5089267423E1278700E90853 /* NeteaseMusicLyricProvider.plist */,
 			);
 			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		50BE7EE324E70CF700F76999 /* PreferenceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				50BE7EE824E70D2F00F76999 /* Preferences */,
+			);
+			path = PreferenceLoader;
+			sourceTree = "<group>";
+		};
+		50BE7EE824E70D2F00F76999 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				50BE7EEA24E70D2F00F76999 /* NeteaseMusicLyricProvider.plist */,
+				50BE7EEB24E70D2F00F76999 /* NeteaseMusicLyricProvider.png */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,11 +334,11 @@
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
-				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevCopyOnBuild = NO;
 				MonkeyDevDeviceIP = 127.0.0.1;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
-				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnAnyBuild = NO;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,11 +364,11 @@
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
-				MonkeyDevCopyOnBuild = YES;
+				MonkeyDevCopyOnBuild = NO;
 				MonkeyDevDeviceIP = 127.0.0.1;
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
-				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnAnyBuild = NO;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";

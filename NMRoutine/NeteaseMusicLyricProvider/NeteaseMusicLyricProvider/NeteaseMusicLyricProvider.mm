@@ -1,4 +1,4 @@
-#line 1 "/Users/qaq/Desktop/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 1 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 #if TARGET_OS_SIMULATOR
@@ -14,23 +14,66 @@ OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTIN
 bool booted = false;
 NSArray* bootedLrcCache;
 
+static bool useTranslate = false; 
+static bool useWebHook = false;
+static NSString* webHookTarget = @"";
+
+static void _reloadSettings() {
+
+    NSString *bundleId = @"wiki.qaq.NMRoutine";
+    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    useTranslate = [settings[@"UseTranslate"] boolValue];
+    useWebHook = [settings[@"EnableWebHook"] boolValue];
+    webHookTarget = settings[@"WebHookURL"];
+
+
+    
+}
+
 static void updateLyric(id manager, signed index) {
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _reloadSettings(); 
+    });
+    
     NSArray *lyricsArray;
     if (bootedLrcCache) {
         lyricsArray = [bootedLrcCache mutableCopy];
-    } else {
+        unsigned long check = [lyricsArray count];
+        if (index < 0 || index >= check) {
+            bootedLrcCache = NULL;
+        }
+    }
+    
+    if (!bootedLrcCache) {
         SEL _laSel = NSSelectorFromString(@"lyricsArray");
         id _laSelVoucher1 = objc_msgSend(manager, _laSel);
         lyricsArray = objc_retainAutoreleaseReturnValue(_laSelVoucher1);
     }
+    
+    unsigned long check = [lyricsArray count];
+    if (index < 0 || index >= check) {
+        bootedLrcCache = NULL;
+        return;
+    }
+    
     id lrcObject = [lyricsArray objectAtIndex: index];
-    SEL _sel = NSSelectorFromString(@"lyric");
-    id _objcRetVoucher1 = objc_msgSend(lrcObject, _sel);
-    NSString *_lrc = objc_retainAutoreleaseReturnValue(_objcRetVoucher1);
-    SEL _selt = NSSelectorFromString(@"translatedLyric");
-    id _objcRetVoucher2 = objc_msgSend(lrcObject, _selt);
-    NSString *_lrcTranslated = objc_retainAutoreleaseReturnValue(_objcRetVoucher2);
-
+    
+    NSString *_lrc = NULL;
+    if (useTranslate) {
+        SEL _selt = NSSelectorFromString(@"translatedLyric");
+        id _objcRetVoucher2 = objc_msgSend(lrcObject, _selt);
+        NSString *_lrcTranslated = objc_retainAutoreleaseReturnValue(_objcRetVoucher2);
+        if ([_lrcTranslated length] > 1)
+            _lrc = _lrcTranslated;
+    }
+    if (!_lrc) {
+        SEL _sel = NSSelectorFromString(@"lyric");
+        id _objcRetVoucher1 = objc_msgSend(lrcObject, _sel);
+        _lrc = objc_retainAutoreleaseReturnValue(_objcRetVoucher1);
+    }
     
     
     NSData *data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
@@ -44,6 +87,7 @@ static void updateLyric(id manager, signed index) {
                            completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         return;
     }];
+    
 }
 
 
@@ -70,7 +114,7 @@ static void updateLyric(id manager, signed index) {
 @class NMPlayerManager; 
 static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void (*_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 48 "/Users/qaq/Desktop/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 91 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, signed a3) {
@@ -95,6 +139,42 @@ static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+static __attribute__((constructor)) void _logosLocalCtor_cbd8b837(int __unused argc, char __unused **argv, char __unused **envp) {
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    _reloadSettings();
+
+
+
+
+
+
+}
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setLyricsArray:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setLyricsArray$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$);} }
-#line 72 "/Users/qaq/Desktop/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+{Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); { MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);}{ MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setLyricsArray:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setLyricsArray$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$);}} }
+#line 151 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
