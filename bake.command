@@ -1,6 +1,7 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 rm -rf DeliveredBakeData
+rm -rf artifacts
 mkdir DeliveredBakeData
 rsync -av --progress ./ ./DeliveredBakeData --exclude DeliveredBakeData
 cd DeliveredBakeData
@@ -59,7 +60,7 @@ for i in *.zip; do unzip -o $i; done
 cd ..
 cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.dylib ./nmlrc/Library/MobileSubstrate/DynamicLibraries/
 cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.plist ./nmlrc/Library/MobileSubstrate/DynamicLibraries/
-mkdir ./nmlrc/Library/PreferenceLoader/Preferences
+mkdir -p ./nmlrc/Library/PreferenceLoader/Preferences
 cp ./temp/Library/PreferenceLoader/Preferences/* ./nmlrc/Library/PreferenceLoader/Preferences
 cd nmlrc
 dpkg-deb -Zgzip -b . ../nmlrc.deb
