@@ -1,3 +1,9 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+rm -rf DeliveredBakeData
+mkdir DeliveredBakeData
+rsync -av --progress ./ ./DeliveredBakeData --exclude DeliveredBakeData
+cd DeliveredBakeData
 SAFELOCATION=$(pwd) && echo $SAFELOCATION
 rm -rf artifacts
 mkdir artifacts    
@@ -62,3 +68,6 @@ mv BigBossConnect/nmlrc.deb artifacts/
 cd $SAFELOCATION
 ls -la artifacts
 for i in artifacts/*.deb; do dpkg -I $i; done
+cd ..
+mv ./DeliveredBakeData/artifacts ./
+rm -rf DeliveredBakeData
