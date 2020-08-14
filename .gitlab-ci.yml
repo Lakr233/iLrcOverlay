@@ -82,6 +82,8 @@ build:
     - cd ..
     - cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.dylib ./nmlrc/Library/MobileSubstrate/DynamicLibraries/
     - cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.plist ./nmlrc/Library/MobileSubstrate/DynamicLibraries/
+    - mkdir ./nmlrc/Library/PreferenceLoader/Preferences
+    - cp ./temp/Library/PreferenceLoader/Preferences/* ./nmlrc/Library/PreferenceLoader/Preferences
     - cd nmlrc
     - dpkg-deb -Zgzip -b . ../nmlrc.deb
     - cd $SAFELOCATION

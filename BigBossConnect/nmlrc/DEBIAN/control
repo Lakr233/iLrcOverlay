@@ -1,6 +1,6 @@
 Package: wiki.qaq.nmlrc
 Name: 网易QQ桌面歌词
-Description: 一个简单的桌面歌词，支持网易云音乐手机平板和QQ音乐手机端
+Description: 一个简单的桌面歌词，支持网易云音乐和QQ音乐iOS端
 Section: Tweak
 Depends: firmware (>= 5.0), mobilesubstrate
 Priority: optional
@@ -8,5 +8,5 @@ Architecture: iphoneos-arm
 Conflicts: wiki.qaq.DesktopLyricOverlay, wiki.qaq.NeteaseMusicLyricProvider, wiki.qaq.QQMusicLyricsProvider
 Author: Lakr Aream <master@233owo.com>
 Depiction: https://moreinfo.thebigboss.org/moreinfo/depiction.php?file=neteasemusiclyricsoverlayDp
-Version: 2.2
+Version: 3.0
 Maintainer: Lakr Aream <master@233owo.com>
