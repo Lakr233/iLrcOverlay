@@ -11,8 +11,8 @@
 
 OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
 
-bool booted = false;
-NSArray* bootedLrcCache;
+
+
 
 static bool useTranslate = false; 
 static bool useWebHook = false;
@@ -39,23 +39,16 @@ static void updateLyric(id manager, signed index) {
     });
     
     NSArray *lyricsArray;
-    if (bootedLrcCache) {
-        lyricsArray = [bootedLrcCache mutableCopy];
-        unsigned long check = [lyricsArray count];
-        if (index < 0 || index >= check) {
-            bootedLrcCache = NULL;
-        }
+    if ([manager respondsToSelector:NSSelectorFromString(@"lyricsArray")]) {
+        lyricsArray = [manager valueForKey:@"_lyricsArray"];
+    } else {
+        lyricsArray = [[manager valueForKey:@"_lyricModel"] valueForKey:@"_lyricList"];
     }
-    
-    if (!bootedLrcCache) {
-        SEL _laSel = NSSelectorFromString(@"lyricsArray");
-        id _laSelVoucher1 = objc_msgSend(manager, _laSel);
-        lyricsArray = objc_retainAutoreleaseReturnValue(_laSelVoucher1);
-    }
+    if (!lyricsArray)
+        return;
     
     unsigned long check = [lyricsArray count];
     if (index < 0 || index >= check) {
-        bootedLrcCache = NULL;
         return;
     }
     
@@ -78,16 +71,31 @@ static void updateLyric(id manager, signed index) {
     
     NSData *data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
     NSString *stringBase64 = [data base64EncodedStringWithOptions:0];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
-    [request setURL:[NSURL URLWithString:reqUrl]];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue alloc]
-                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        return;
-    }];
+    while (true) {
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setHTTPMethod:@"GET"];
+        NSString* reqUrl = [[NSString alloc] initWithFormat:@"http://127.0.0.1:6996/SETLRC?param=%@", stringBase64];
+        [request setURL:[NSURL URLWithString:reqUrl]];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue alloc]
+                               completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            return;
+        }];
+        break;
+    }
     
+    if (useWebHook && [webHookTarget hasPrefix:@"http"]) {
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setHTTPMethod:@"GET"];
+        NSString* reqUrl = [[NSString alloc] initWithFormat:@"%@/SETLRC?param=%@", webHookTarget, stringBase64];
+
+        [request setURL:[NSURL URLWithString:reqUrl]];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue alloc]
+                               completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            return;
+        }];
+    }
 }
 
 
@@ -112,9 +120,9 @@ static void updateLyric(id manager, signed index) {
 #endif
 
 @class NMPlayerManager; 
-static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void (*_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, id); 
+static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); 
 
-#line 91 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 100 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, signed a3) {
@@ -122,20 +130,6 @@ static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_
     return _logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(self, _cmd, a3);
 }
     
-static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id a3) {
-    if (!booted && !bootedLrcCache) {
-        bootedLrcCache = (NSArray*)a3;
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                       sleep(5);
-                       booted = true;
-                       });
-        
-    }
-    if (booted && bootedLrcCache && bootedLrcCache != (NSArray*)a3) {
-        bootedLrcCache = NULL;
-    }
-    return _logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$(self, _cmd, a3);
-}
 
 
 
@@ -152,7 +146,21 @@ static void _logos_method$_ungrouped$NMPlayerManager$setLyricsArray$(_LOGOS_SELF
 
 
 
-static __attribute__((constructor)) void _logosLocalCtor_cbd8b837(int __unused argc, char __unused **argv, char __unused **envp) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static __attribute__((constructor)) void _logosLocalCtor_2cde6470(int __unused argc, char __unused **argv, char __unused **envp) {
     
 
 
@@ -176,5 +184,5 @@ static __attribute__((constructor)) void _logosLocalCtor_cbd8b837(int __unused a
 
 }
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); { MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);}{ MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setLyricsArray:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setLyricsArray$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setLyricsArray$);}} }
-#line 151 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+{Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); { MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);}} }
+#line 160 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
