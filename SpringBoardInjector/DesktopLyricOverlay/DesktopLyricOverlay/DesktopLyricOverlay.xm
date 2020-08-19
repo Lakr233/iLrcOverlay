@@ -18,7 +18,7 @@ static UILabel* _sharedLabel;
 - (void)applicationDidFinishLaunching:(id)arg1 {
     %orig;
     
-    NSLog(@"[Lakr233] SpringBoard LRC 7AF332C5-9CB5-416A-9198-2FB67665B101");
+//    NSLog(@"[Lakr233] SpringBoard LRC 7AF332C5-9CB5-416A-9198-2FB67665B101");
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if (@available(iOS 11.0, *)) {
