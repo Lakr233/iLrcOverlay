@@ -16,7 +16,7 @@ build:
     - SAFELOCATION=$(pwd) && echo $SAFELOCATION
     - rm -rf artifacts
     - mkdir artifacts    
-    - bake.command
+    - ./bake.command
     # CLEAN UP JOBS
     - cd $SAFELOCATION
     - ls -la artifacts
