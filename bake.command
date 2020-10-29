@@ -77,3 +77,6 @@ for i in artifacts/*.deb; do dpkg -I $i; done
 cd ..
 mv ./DeliveredBakeData/artifacts ./
 rm -rf DeliveredBakeData
+
+echo "Result is at: $(pwd)"
+
