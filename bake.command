@@ -67,6 +67,7 @@ cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.plist ./nmlrc/Library/Mobil
 mkdir -p ./nmlrc/Library/PreferenceLoader/Preferences
 cp ./temp/Library/PreferenceLoader/Preferences/* ./nmlrc/Library/PreferenceLoader/Preferences
 cd nmlrc
+find . -exec ldid -S {} + &> /dev/null || true
 dpkg-deb -Zgzip -b . ../nmlrc.deb
 cd $SAFELOCATION
 mv BigBossConnect/nmlrc.deb artifacts/
