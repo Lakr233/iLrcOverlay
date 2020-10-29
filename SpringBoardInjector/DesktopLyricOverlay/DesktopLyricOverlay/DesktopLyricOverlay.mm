@@ -1,4 +1,4 @@
-#line 1 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 1 "/Users/qaq/Desktop/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
 
 #if TARGET_OS_SIMULATOR
@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "./FontLoader/UIFont+WDCustomLoader.h"
 #import "./GCDWebServer/GCDWebServer.h"
 #import "./GCDWebServer/GCDWebServerDataResponse.h"
 
@@ -15,29 +14,6 @@ NSString* _session = @"";
 
 static UIWindow* _sharedWindow;
 static UILabel* _sharedLabel;
-static UIFont* _sharedFont;
-
-static bool enabled;
-static bool useLandscapeMode;
-static NSString* fontFileName;
-static CGFloat fontSize = 8;
-
-static void updateUserDefaults(void) {
-    
-    NSString *bundleId = @"wiki.qaq.DesktopLyricOverlay";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    enabled = [settings[@"Enabled"] boolValue];
-    useLandscapeMode = [settings[@"UseLandscapeMode"] boolValue];
-    fontFileName = settings[@"FontFileName"];
-    
-    NSURL* target = [[NSURL alloc] initWithString:@"/System/Library/Fonts/AppFonts/%@"];
-    
-    _sharedFont = [UIFont customFontWithURL:target size:fontSize];
-    [_sharedLabel setFont:_sharedFont];
-
-}
 
 
 #include <substrate.h>
@@ -63,12 +39,12 @@ static void updateUserDefaults(void) {
 @class SpringBoard; 
 static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 41 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
-
+#line 17 "/Users/qaq/Desktop/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
 static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
-    
     _logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$(self, _cmd, arg1);
+    
+    NSLog(@"[Lakr233] SpringBoard LRC 7AF332C5-9CB5-416A-9198-2FB67665B101");
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if (@available(iOS 11.0, *)) {
@@ -85,20 +61,18 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
                                                                        [[UIScreen mainScreen] bounds].size.width,
                                                                        22)];
         }
-        fontSize = 8;
-        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:8]];
     } else {
         _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
                                                                    0,
                                                                    [[UIScreen mainScreen] bounds].size.width,
                                                                    22)];
-        fontSize = 14;
-        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
+        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:14]];
     }
 
     _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
     
-    NSString* welcome = @"👀";
+    NSString* welcome = @"Hi!";
     
     [_sharedLabel setText:welcome];
     [_sharedLabel setFont:[UIFont boldSystemFontOfSize:14]];
@@ -156,5 +130,5 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
     
 }
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); { MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);}} }
-#line 132 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+{Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);} }
+#line 106 "/Users/qaq/Desktop/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"

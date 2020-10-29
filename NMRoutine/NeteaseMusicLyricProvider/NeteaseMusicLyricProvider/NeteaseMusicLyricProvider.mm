@@ -7,12 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import <objc/runtime.h>
-#import <objc/message.h>
-
 #include <substrate.h>
 
-OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj);
+OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
 
 
 
@@ -30,6 +27,8 @@ static void _reloadSettings() {
     useTranslate = [settings[@"UseTranslate"] boolValue];
     useWebHook = [settings[@"EnableWebHook"] boolValue];
     webHookTarget = settings[@"WebHookURL"];
+
+
     
 }
 
@@ -123,7 +122,7 @@ static void updateLyric(id manager, signed index) {
 @class NMPlayerManager; 
 static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); 
 
-#line 101 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 100 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, signed a3) {
@@ -161,7 +160,7 @@ static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_
 
 
 
-static __attribute__((constructor)) void _logosLocalCtor_5998d7e0(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_2cde6470(int __unused argc, char __unused **argv, char __unused **envp) {
     
 
 
@@ -186,4 +185,4 @@ static __attribute__((constructor)) void _logosLocalCtor_5998d7e0(int __unused a
 }
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); { MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);}} }
-#line 161 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 160 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"

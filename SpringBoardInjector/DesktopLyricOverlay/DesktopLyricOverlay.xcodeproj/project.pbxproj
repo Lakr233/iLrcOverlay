@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5062080B254ADE7A002BE37C /* UIFont+WDCustomLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062080A254ADE73002BE37C /* UIFont+WDCustomLoader.m */; };
-		5062080E254AE59A002BE37C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5062080D254AE59A002BE37C /* CoreText.framework */; };
-		50620813254AE64C002BE37C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50620812254AE64C002BE37C /* CoreGraphics.framework */; };
 		5089268923E1290100E90853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268823E1290100E90853 /* UIKit.framework */; };
 		5089268B23E1290100E90853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268A23E1290100E90853 /* Foundation.framework */; };
 		5089268D23E1290100E90853 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5089268C23E1290100E90853 /* CydiaSubstrate.framework */; };
@@ -33,14 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50620804254AD8BA002BE37C /* DesktopLyricOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DesktopLyricOverlay.png; sourceTree = "<group>"; };
-		50620805254AD8BA002BE37C /* DesktopLyricOverlay.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DesktopLyricOverlay.plist; sourceTree = "<group>"; };
-		50620806254AD929002BE37C /* DesktopLyricOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DesktopLyricOverlay@2x.png"; sourceTree = "<group>"; };
-		50620809254ADE73002BE37C /* UIFont+WDCustomLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+WDCustomLoader.h"; sourceTree = "<group>"; };
-		5062080A254ADE73002BE37C /* UIFont+WDCustomLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+WDCustomLoader.m"; sourceTree = "<group>"; };
-		5062080D254AE59A002BE37C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		5062080F254AE5F2002BE37C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		50620812254AE64C002BE37C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		5089268523E1290100E90853 /* DesktopLyricOverlay.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = DesktopLyricOverlay.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		5089268823E1290100E90853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5089268A23E1290100E90853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,8 +82,6 @@
 				508926D523E12C5300E90853 /* libz.tbd in Frameworks */,
 				5089268B23E1290100E90853 /* Foundation.framework in Frameworks */,
 				508926C323E12BFE00E90853 /* CFNetwork.framework in Frameworks */,
-				50620813254AE64C002BE37C /* CoreGraphics.framework in Frameworks */,
-				5062080E254AE59A002BE37C /* CoreText.framework in Frameworks */,
 				508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */,
 				5089268D23E1290100E90853 /* CydiaSubstrate.framework in Frameworks */,
 			);
@@ -103,33 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		50620808254ADE73002BE37C /* FontLoader */ = {
-			isa = PBXGroup;
-			children = (
-				50620809254ADE73002BE37C /* UIFont+WDCustomLoader.h */,
-				5062080A254ADE73002BE37C /* UIFont+WDCustomLoader.m */,
-			);
-			path = FontLoader;
-			sourceTree = "<group>";
-		};
-		5063F6D62547CE6900CF867C /* PreferenceLoader */ = {
-			isa = PBXGroup;
-			children = (
-				5063F6D72547CE6900CF867C /* Preferences */,
-			);
-			path = PreferenceLoader;
-			sourceTree = "<group>";
-		};
-		5063F6D72547CE6900CF867C /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				50620805254AD8BA002BE37C /* DesktopLyricOverlay.plist */,
-				50620804254AD8BA002BE37C /* DesktopLyricOverlay.png */,
-				50620806254AD929002BE37C /* DesktopLyricOverlay@2x.png */,
-			);
-			path = Preferences;
-			sourceTree = "<group>";
-		};
 		5089267A23E1290100E90853 = {
 			isa = PBXGroup;
 			children = (
@@ -150,9 +110,6 @@
 		5089268723E1290100E90853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50620812254AE64C002BE37C /* CoreGraphics.framework */,
-				5062080F254AE5F2002BE37C /* CoreData.framework */,
-				5062080D254AE59A002BE37C /* CoreText.framework */,
 				508926D323E12C4B00E90853 /* MobileCoreServices.framework */,
 				508926C523E12C0B00E90853 /* libxml2.2.tbd */,
 				508926C423E12C0500E90853 /* libz.tbd */,
@@ -167,7 +124,6 @@
 		5089268E23E1290100E90853 /* DesktopLyricOverlay */ = {
 			isa = PBXGroup;
 			children = (
-				50620808254ADE73002BE37C /* FontLoader */,
 				508926A523E12AEE00E90853 /* GCDWebServer */,
 				5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */,
 				5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */,
@@ -197,7 +153,6 @@
 		5089269223E1290100E90853 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				5063F6D62547CE6900CF867C /* PreferenceLoader */,
 				5089269D23E1290100E90853 /* MobileSubstrate */,
 			);
 			path = Library;
@@ -369,7 +324,6 @@
 			files = (
 				5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */,
 				508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */,
-				5062080B254ADE7A002BE37C /* UIFont+WDCustomLoader.m in Sources */,
 				508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */,
 				508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */,
 				508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */,

@@ -81,7 +81,7 @@
 			<key>placeholder</key>
 			<string>http://example.com.or.device.ip:80</string>
 			<key>PostNotification</key>
-			<string>wiki.qaq.NMRoutine-preferencesChanged</string>
+			<string>wiki.qaq.hi-preferencesChanged</string>
 		</dict>
 		<dict>
 			<key>cell</key>
