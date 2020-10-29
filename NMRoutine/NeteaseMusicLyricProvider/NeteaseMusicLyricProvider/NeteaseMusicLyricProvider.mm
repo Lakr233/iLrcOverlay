@@ -58,15 +58,13 @@ static void updateLyric(id manager, signed index) {
     NSString *_lrc = NULL;
     if (useTranslate) {
         SEL _selt = NSSelectorFromString(@"translatedLyric");
-        id _objcRetVoucher2 = objc_msgSend(lrcObject, _selt);
-        NSString *_lrcTranslated = objc_retainAutoreleaseReturnValue(_objcRetVoucher2);
+        NSString *_lrcTranslated = [lrcObject performSelector:_selt];
         if ([_lrcTranslated length] > 1)
             _lrc = _lrcTranslated;
     }
     if (!_lrc) {
         SEL _sel = NSSelectorFromString(@"lyric");
-        id _objcRetVoucher1 = objc_msgSend(lrcObject, _sel);
-        _lrc = objc_retainAutoreleaseReturnValue(_objcRetVoucher1);
+        _lrc = [lrcObject performSelector:_sel];
     }
     
     
