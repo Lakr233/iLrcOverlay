@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "./FontLoader/UIFont+WDCustomLoader.h"
 #import "./GCDWebServer/GCDWebServer.h"
 #import "./GCDWebServer/GCDWebServerDataResponse.h"
 
@@ -13,12 +14,35 @@ NSString* _session = @"";
 
 static UIWindow* _sharedWindow;
 static UILabel* _sharedLabel;
+static UIFont* _sharedFont;
+
+static bool enabled;
+static bool useLandscapeMode;
+static NSString* fontFileName;
+static CGFloat fontSize = 8;
+
+static void updateUserDefaults(void) {
+    
+    NSString *bundleId = @"wiki.qaq.DesktopLyricOverlay";
+    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    enabled = [settings[@"Enabled"] boolValue];
+    useLandscapeMode = [settings[@"UseLandscapeMode"] boolValue];
+    fontFileName = settings[@"FontFileName"];
+    
+    NSURL* target = [[NSURL alloc] initWithString:@"/System/Library/Fonts/AppFonts/%@"];
+    
+    _sharedFont = [UIFont customFontWithURL:target size:fontSize];
+    [_sharedLabel setFont:_sharedFont];
+
+}
 
 %hook SpringBoard
+
 - (void)applicationDidFinishLaunching:(id)arg1 {
-    %orig;
     
-//    NSLog(@"[Lakr233] SpringBoard LRC 7AF332C5-9CB5-416A-9198-2FB67665B101");
+    %orig;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if (@available(iOS 11.0, *)) {
@@ -35,18 +59,20 @@ static UILabel* _sharedLabel;
                                                                        [[UIScreen mainScreen] bounds].size.width,
                                                                        22)];
         }
-        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:8]];
+        fontSize = 8;
+        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     } else {
         _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
                                                                    0,
                                                                    [[UIScreen mainScreen] bounds].size.width,
                                                                    22)];
-        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        fontSize = 14;
+        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     }
 
     _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
     
-    NSString* welcome = @"Hi!";
+    NSString* welcome = @"👀";
     
     [_sharedLabel setText:welcome];
     [_sharedLabel setFont:[UIFont boldSystemFontOfSize:14]];
