@@ -7,11 +7,10 @@ rsync -av --progress ./ ./DeliveredBakeData --exclude DeliveredBakeData
 cd DeliveredBakeData
 SAFELOCATION=$(pwd) && echo $SAFELOCATION
 rm -rf artifacts
-mkdir artifacts
-
+mkdir artifacts    
 cd $SAFELOCATION/SpringBoardInjector/DesktopLyricOverlay
 rm -rf Packages/*
-xcodebuild clean build -destination generic/platform=iOS \
+xcodebuild clean build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_ENTITLEMENTS="" \
@@ -23,10 +22,9 @@ xcodebuild clean build -destination generic/platform=iOS \
   MonkeyDevBuildPackageOnAnyBuild="YES" \
   | xcpretty
 cp Packages/*.deb $SAFELOCATION/artifacts/
-
 cd $SAFELOCATION/NMRoutine/NeteaseMusicLyricProvider
 rm -rf Packages/*
-xcodebuild clean build -destination generic/platform=iOS \
+xcodebuild clean build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_ENTITLEMENTS="" \
@@ -38,10 +36,9 @@ xcodebuild clean build -destination generic/platform=iOS \
   MonkeyDevBuildPackageOnAnyBuild="YES" \
   | xcpretty
 cp Packages/*.deb $SAFELOCATION/artifacts/
-
 cd $SAFELOCATION/QQMusicRoutine/QQMusicLyricsProvider
 rm -rf Packages/*
-xcodebuild clean build -destination generic/platform=iOS \
+xcodebuild clean build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_ENTITLEMENTS="" \
@@ -53,7 +50,6 @@ xcodebuild clean build -destination generic/platform=iOS \
   MonkeyDevBuildPackageOnAnyBuild="YES" \
   | xcpretty
 cp Packages/*.deb $SAFELOCATION/artifacts/
-
 cd $SAFELOCATION/BigBossConnect
 rm -rf temp && mkdir temp
 cd temp
