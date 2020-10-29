@@ -20,7 +20,7 @@ static UIFont* _sharedFont;
 static bool enabled;
 static bool useLandscapeMode;
 static NSString* fontFileName;
-static CGFloat fontSize = 8;
+static CGFloat fontSize = 14;
 
 static void updateUserDefaults(void) {
     
@@ -38,20 +38,28 @@ static void updateUserDefaults(void) {
     } else {
         useLandscapeMode = false;
     }
-    fontFileName = settings[@"FontFileName"];
-    
-    NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
-    NSURL* target = [NSURL fileURLWithPath:location];
-    
-    if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
-        _sharedFont = [UIFont customFontWithURL:target size:fontSize];
-        _sharedFont = [_sharedFont fontWithSize:fontSize];
-        [_sharedLabel setFont:_sharedFont];
+    if (settings[@"FontSize"]) {
+        fontSize = [settings[@"FontSize"] floatValue];
     } else {
-        _sharedFont = [UIFont systemFontOfSize:fontSize];
+        fontSize = 14;
     }
-    if (_sharedLabel) {
-        [_sharedLabel setFont: _sharedFont];
+    
+    if (fontFileName != settings[@"FontFileName"]) {
+        fontFileName = settings[@"FontFileName"];
+        NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
+        NSURL* target = [NSURL fileURLWithPath:location];
+        
+        if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
+            _sharedFont = [UIFont customFontWithURL:target size:fontSize];
+            _sharedFont = [_sharedFont fontWithSize:fontSize];
+        } else {
+            _sharedFont = [UIFont systemFontOfSize:fontSize];
+        }
+        if (_sharedLabel) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_sharedLabel setFont: _sharedFont];
+            });
+        }
     }
 
 }
@@ -80,7 +88,7 @@ static void updateUserDefaults(void) {
 @class SpringBoard; 
 static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 58 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 66 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
 
 static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
@@ -106,13 +114,11 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
                                                                            [[UIScreen mainScreen] bounds].size.width,
                                                                            22)];
             }
-            fontSize = 8;
         } else {
             _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
                                                                        0,
                                                                        [[UIScreen mainScreen] bounds].size.width,
                                                                        22)];
-            fontSize = 14;
         }
         
         _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
@@ -180,4 +186,4 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
 }
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); { MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);}} }
-#line 155 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 161 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"

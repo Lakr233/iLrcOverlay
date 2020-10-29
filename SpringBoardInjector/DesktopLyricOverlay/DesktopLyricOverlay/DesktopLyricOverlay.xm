@@ -19,7 +19,7 @@ static UIFont* _sharedFont;
 static bool enabled;
 static bool useLandscapeMode;
 static NSString* fontFileName;
-static CGFloat fontSize = 8;
+static CGFloat fontSize = 14;
 
 static void updateUserDefaults(void) {
     
@@ -37,20 +37,28 @@ static void updateUserDefaults(void) {
     } else {
         useLandscapeMode = false;
     }
-    fontFileName = settings[@"FontFileName"];
-    
-    NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
-    NSURL* target = [NSURL fileURLWithPath:location];
-    
-    if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
-        _sharedFont = [UIFont customFontWithURL:target size:fontSize];
-        _sharedFont = [_sharedFont fontWithSize:fontSize];
-        [_sharedLabel setFont:_sharedFont];
+    if (settings[@"FontSize"]) {
+        fontSize = [settings[@"FontSize"] floatValue];
     } else {
-        _sharedFont = [UIFont systemFontOfSize:fontSize];
+        fontSize = 14;
     }
-    if (_sharedLabel) {
-        [_sharedLabel setFont: _sharedFont];
+    
+    if (fontFileName != settings[@"FontFileName"]) {
+        fontFileName = settings[@"FontFileName"];
+        NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
+        NSURL* target = [NSURL fileURLWithPath:location];
+        
+        if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
+            _sharedFont = [UIFont customFontWithURL:target size:fontSize];
+            _sharedFont = [_sharedFont fontWithSize:fontSize];
+        } else {
+            _sharedFont = [UIFont systemFontOfSize:fontSize];
+        }
+        if (_sharedLabel) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_sharedLabel setFont: _sharedFont];
+            });
+        }
     }
 
 }
@@ -80,13 +88,11 @@ static void updateUserDefaults(void) {
                                                                            [[UIScreen mainScreen] bounds].size.width,
                                                                            22)];
             }
-            fontSize = 8;
         } else {
             _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
                                                                        0,
                                                                        [[UIScreen mainScreen] bounds].size.width,
                                                                        22)];
-            fontSize = 14;
         }
         
         _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
