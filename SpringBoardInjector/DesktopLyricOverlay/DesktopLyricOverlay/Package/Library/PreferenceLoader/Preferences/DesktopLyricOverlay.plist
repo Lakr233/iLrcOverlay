@@ -99,7 +99,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>详情请参考源码</string>
+			<string>详情请参考源码 需要注销生效</string>
 		</dict>
 		<dict>
 			<key>cell</key>
