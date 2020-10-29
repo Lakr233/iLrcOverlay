@@ -20,7 +20,7 @@ static UIFont* _sharedFont;
 static bool enabled;
 static bool useLandscapeMode;
 static NSString* fontFileName;
-static CGFloat fontSize = 14;
+static CGFloat fontSize = 12;
 
 static void updateUserDefaults(void) {
     
