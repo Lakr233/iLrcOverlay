@@ -31,7 +31,7 @@
 			<key>key</key>
 			<string>Enabled</string>
 			<key>label</key>
-			<string>启用歌词 需要注销生效</string>
+			<string>启用歌词</string>
 			<key>PostNotification</key>
 			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
 		</dict>
@@ -99,7 +99,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>详情请参考源码</string>
+			<string>详情请参考源码 需要注销生效</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -115,6 +115,6 @@
 		</dict>
 	</array>
 	<key>title</key>
-	<string>桌面歌词悬浮窗</string>
+	<string>需要注销生效</string>
 </dict>
 </plist>
