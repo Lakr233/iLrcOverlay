@@ -1,4 +1,4 @@
-#line 1 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 1 "/Users/darwin/Projects/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
 
 #if TARGET_OS_SIMULATOR
@@ -10,10 +10,13 @@
 #import "./FontLoader/UIFont+WDCustomLoader.h"
 #import "./GCDWebServer/GCDWebServer.h"
 #import "./GCDWebServer/GCDWebServerDataResponse.h"
+#import "LyricWindow.h"
+
+#define TWEAK_ID "wiki.qaq.DesktopLyricOverlay"
 
 NSString* _session = @"";
 
-static UIWindow* _sharedWindow;
+static LyricWindow* _sharedWindow;
 static UILabel* _sharedLabel;
 static UIFont* _sharedFont;
 
@@ -24,8 +27,7 @@ static CGFloat fontSize = 8;
 
 static void updateUserDefaults(void) {
     
-    NSString *bundleId = @"wiki.qaq.DesktopLyricOverlay";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
+    NSString *plistPath = @"/var/mobile/Library/Preferences/" TWEAK_ID ".plist";
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
     enabled = [settings[@"Enabled"] boolValue];
@@ -60,10 +62,23 @@ static void updateUserDefaults(void) {
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class SpringBoard; 
-static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
+@class CAWindowServerDisplay; @class SpringBoard; 
+static unsigned int (*_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$)(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 41 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 43 "/Users/darwin/Projects/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+
+
+static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, CGPoint arg1, NSArray <NSNumber *> * arg2) {
+    NSMutableArray <NSNumber *> *mArg2 = [arg2 mutableCopy] ?: [NSMutableArray array];
+    id lyricWindowContextId = [NSDictionary dictionaryWithContentsOfFile:@"/tmp/" TWEAK_ID ".plist"][@"LyricContextId"];
+    if ([lyricWindowContextId isKindOfClass:[NSNumber class]]) {
+        [mArg2 addObject:lyricWindowContextId];
+    }
+    return _logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(self, _cmd, arg1, mArg2);
+}
+
+
+
 
 
 static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
@@ -73,25 +88,25 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if (@available(iOS 11.0, *)) {
             if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
-                _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                           [[UIScreen mainScreen] bounds].size.height - 40,
-                                                                           [[UIScreen mainScreen] bounds].size.width,
-                                                                           22)];
+                _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                              [[UIScreen mainScreen] bounds].size.height - 40,
+                                                                              [[UIScreen mainScreen] bounds].size.width,
+                                                                              22)];
             }
         }
         if (!_sharedWindow) {
-            _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                       [[UIScreen mainScreen] bounds].size.height - 22,
-                                                                       [[UIScreen mainScreen] bounds].size.width,
-                                                                       22)];
+            _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                          [[UIScreen mainScreen] bounds].size.height - 22,
+                                                                          [[UIScreen mainScreen] bounds].size.width,
+                                                                          22)];
         }
         fontSize = 8;
         [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     } else {
-        _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                   0,
-                                                                   [[UIScreen mainScreen] bounds].size.width,
-                                                                   22)];
+        _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                      0,
+                                                                      [[UIScreen mainScreen] bounds].size.width,
+                                                                      22)];
         fontSize = 14;
         [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     }
@@ -119,8 +134,9 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
     
     [_sharedWindow setHidden:NO];
     [_sharedWindow makeKeyAndVisible];
-    
-    
+    [@{
+        @"LyricContextId": @([_sharedWindow _contextId])
+    } writeToFile:@"/tmp/" TWEAK_ID ".plist" atomically:YES];
     
     GCDWebServer *_s = [[GCDWebServer alloc] init];
     [_s addDefaultHandlerForMethod:@"GET"
@@ -141,13 +157,13 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
         __block NSString* cpy = [decodedString mutableCopy];
         __block NSString* currentSession = [_session mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
-                [_sharedLabel setHidden:NO];
-                [_sharedLabel setText:cpy];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if ([currentSession isEqual:_session]) {
-                        [_sharedLabel setHidden:YES];
-                    }
-                });
+            [_sharedLabel setHidden:NO];
+            [_sharedLabel setText:cpy];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(180.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([currentSession isEqual:_session]) {
+                    [_sharedLabel setHidden:YES];
+                }
+            });
         });
         
         return [GCDWebServerDataResponse responseWithHTML:@"花Q"];
@@ -155,6 +171,9 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
     [_s startWithPort:6996 bonjourName:nil];
     
 }
+
+
+
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); { MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);}} }
-#line 132 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+{Class _logos_class$_ungrouped$CAWindowServerDisplay = objc_getClass("CAWindowServerDisplay"); MSHookMessageEx(_logos_class$_ungrouped$CAWindowServerDisplay, @selector(contextIdAtPosition:excludingContextIds:), (IMP)&_logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$, (IMP*)&_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$);Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);} }
+#line 151 "/Users/darwin/Projects/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"

@@ -9,10 +9,13 @@
 #import "./FontLoader/UIFont+WDCustomLoader.h"
 #import "./GCDWebServer/GCDWebServer.h"
 #import "./GCDWebServer/GCDWebServerDataResponse.h"
+#import "LyricWindow.h"
+
+#define TWEAK_ID "wiki.qaq.DesktopLyricOverlay"
 
 NSString* _session = @"";
 
-static UIWindow* _sharedWindow;
+static LyricWindow* _sharedWindow;
 static UILabel* _sharedLabel;
 static UIFont* _sharedFont;
 
@@ -23,8 +26,7 @@ static CGFloat fontSize = 8;
 
 static void updateUserDefaults(void) {
     
-    NSString *bundleId = @"wiki.qaq.DesktopLyricOverlay";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
+    NSString *plistPath = @"/var/mobile/Library/Preferences/" TWEAK_ID ".plist";
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
     enabled = [settings[@"Enabled"] boolValue];
@@ -38,6 +40,19 @@ static void updateUserDefaults(void) {
 
 }
 
+%hook CAWindowServerDisplay
+
+- (unsigned int)contextIdAtPosition:(CGPoint)arg1 excludingContextIds:(NSArray <NSNumber *> *)arg2 {
+    NSMutableArray <NSNumber *> *mArg2 = [arg2 mutableCopy] ?: [NSMutableArray array];
+    id lyricWindowContextId = [NSDictionary dictionaryWithContentsOfFile:@"/tmp/" TWEAK_ID ".plist"][@"LyricContextId"];
+    if ([lyricWindowContextId isKindOfClass:[NSNumber class]]) {
+        [mArg2 addObject:lyricWindowContextId];
+    }
+    return %orig(arg1, mArg2);
+}
+
+%end
+
 %hook SpringBoard
 
 - (void)applicationDidFinishLaunching:(id)arg1 {
@@ -47,25 +62,25 @@ static void updateUserDefaults(void) {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if (@available(iOS 11.0, *)) {
             if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
-                _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                           [[UIScreen mainScreen] bounds].size.height - 40,
-                                                                           [[UIScreen mainScreen] bounds].size.width,
-                                                                           22)];
+                _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                              [[UIScreen mainScreen] bounds].size.height - 40,
+                                                                              [[UIScreen mainScreen] bounds].size.width,
+                                                                              22)];
             }
         }
         if (!_sharedWindow) {
-            _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                       [[UIScreen mainScreen] bounds].size.height - 22,
-                                                                       [[UIScreen mainScreen] bounds].size.width,
-                                                                       22)];
+            _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                          [[UIScreen mainScreen] bounds].size.height - 22,
+                                                                          [[UIScreen mainScreen] bounds].size.width,
+                                                                          22)];
         }
         fontSize = 8;
         [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     } else {
-        _sharedWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0,
-                                                                   0,
-                                                                   [[UIScreen mainScreen] bounds].size.width,
-                                                                   22)];
+        _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
+                                                                      0,
+                                                                      [[UIScreen mainScreen] bounds].size.width,
+                                                                      22)];
         fontSize = 14;
         [_sharedLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     }
@@ -93,8 +108,9 @@ static void updateUserDefaults(void) {
     
     [_sharedWindow setHidden:NO];
     [_sharedWindow makeKeyAndVisible];
-    
-    
+    [@{
+        @"LyricContextId": @([_sharedWindow _contextId])
+    } writeToFile:@"/tmp/" TWEAK_ID ".plist" atomically:YES];
     
     GCDWebServer *_s = [[GCDWebServer alloc] init];
     [_s addDefaultHandlerForMethod:@"GET"
@@ -115,13 +131,13 @@ static void updateUserDefaults(void) {
         __block NSString* cpy = [decodedString mutableCopy];
         __block NSString* currentSession = [_session mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
-                [_sharedLabel setHidden:NO];
-                [_sharedLabel setText:cpy];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if ([currentSession isEqual:_session]) {
-                        [_sharedLabel setHidden:YES];
-                    }
-                });
+            [_sharedLabel setHidden:NO];
+            [_sharedLabel setText:cpy];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(180.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([currentSession isEqual:_session]) {
+                    [_sharedLabel setHidden:YES];
+                }
+            });
         });
         
         return [GCDWebServerDataResponse responseWithHTML:@"花Q"];
@@ -129,3 +145,6 @@ static void updateUserDefaults(void) {
     [_s startWithPort:6996 bonjourName:nil];
     
 }
+
+%end
+

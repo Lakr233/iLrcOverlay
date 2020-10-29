@@ -30,6 +30,8 @@
 		508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */; };
 		508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926D323E12C4B00E90853 /* MobileCoreServices.framework */; platformFilter = ios; };
 		508926D523E12C5300E90853 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C423E12C0500E90853 /* libz.tbd */; };
+		D6EDEC53254B1F4400AEBD55 /* LyricWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */; };
+		D6EDEC54254B1F4400AEBD55 /* LyricWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		508926C423E12C0500E90853 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		508926C523E12C0B00E90853 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		508926D323E12C4B00E90853 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricWindow.h; sourceTree = "<group>"; };
+		D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 			children = (
 				50620808254ADE73002BE37C /* FontLoader */,
 				508926A523E12AEE00E90853 /* GCDWebServer */,
+				D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */,
+				D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */,
 				5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */,
 				5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */,
 				5089268F23E1290100E90853 /* Package */,
@@ -269,6 +275,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EDEC53254B1F4400AEBD55 /* LyricWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +377,7 @@
 				5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */,
 				508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */,
 				5062080B254ADE7A002BE37C /* UIFont+WDCustomLoader.m in Sources */,
+				D6EDEC54254B1F4400AEBD55 /* LyricWindow.m in Sources */,
 				508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */,
 				508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */,
 				508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
@@ -470,7 +478,7 @@
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
-				MonkeyDevkillProcessOnInstall = SpringBoard;
+				MonkeyDevkillProcessOnInstall = "SpringBoard backboardd";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -500,7 +508,7 @@
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
-				MonkeyDevkillProcessOnInstall = SpringBoard;
+				MonkeyDevkillProcessOnInstall = "SpringBoard backboardd";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
