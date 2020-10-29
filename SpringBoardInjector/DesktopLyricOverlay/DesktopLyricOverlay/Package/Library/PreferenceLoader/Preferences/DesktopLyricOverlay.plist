@@ -9,7 +9,7 @@
 		<key>icon</key>
 		<string>DesktopLyricOverlay.png</string>
 		<key>label</key>
-		<string>需要注销生效</string>
+		<string>桌面歌词悬浮窗</string>
 	</dict>
 	<key>items</key>
 	<array>
@@ -115,6 +115,6 @@
 		</dict>
 	</array>
 	<key>title</key>
-	<string>桌面歌词悬浮窗</string>
+	<string>需要注销生效</string>
 </dict>
 </plist>
