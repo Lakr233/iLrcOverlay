@@ -7,9 +7,9 @@
 		<key>cell</key>
 		<string>PSLinkCell</string>
 		<key>icon</key>
-		<string>NeteaseMusicLyricProvider.png</string>
+		<string>DesktopLyricOverlay.png</string>
 		<key>label</key>
-		<string>网抑云歌词推送</string>
+		<string>桌面歌词悬浮窗</string>
 	</dict>
 	<key>items</key>
 	<array>
@@ -19,7 +19,7 @@
 			<key>isStaticText</key>
 			<true/>
 			<key>label</key>
-			<string>歌词设置</string>
+			<string>通用</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -27,13 +27,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>wiki.qaq.NMRoutine</string>
+			<string>wiki.qaq.DesktopLyricOverlay</string>
 			<key>key</key>
-			<string>UseTranslate</string>
+			<string>Enabled</string>
 			<key>label</key>
-			<string>优先使用歌词翻译</string>
+			<string>启用歌词 需要注销生效</string>
 			<key>PostNotification</key>
-			<string>wiki.qaq.NMRoutine-preferencesChanged-UseTranslate</string>
+			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -41,7 +41,7 @@
 			<key>isStaticText</key>
 			<true/>
 			<key>label</key>
-			<string>推送设置</string>
+			<string>界面设置</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -49,13 +49,13 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>wiki.qaq.NMRoutine</string>
+			<string>wiki.qaq.DesktopLyricOverlay</string>
 			<key>key</key>
-			<string>EnableWebHook</string>
+			<string>UseLandscapeMode</string>
 			<key>label</key>
-			<string>启用额外WebHook</string>
+			<string>横屏模式 (测试)</string>
 			<key>PostNotification</key>
-			<string>wiki.qaq.NMRoutine-preferencesChanged</string>
+			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -63,7 +63,7 @@
 			<key>isStaticText</key>
 			<true/>
 			<key>label</key>
-			<string>WebHook 允许你把歌词推送到其他设备</string>
+			<string>/System/Library/Fonts/AppFonts</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -71,23 +71,23 @@
 			<key>default</key>
 			<string></string>
 			<key>defaults</key>
-			<string>wiki.qaq.NMRoutine</string>
+			<string>wiki.qaq.DesktopLyricOverlay</string>
 			<key>key</key>
-			<string>WebHookURL</string>
+			<string>FontFileName</string>
 			<key>keyboard</key>
 			<string></string>
 			<key>label</key>
-			<string>设备地址</string>
+			<string>字体文件名</string>
 			<key>placeholder</key>
-			<string>http://example.com.or.device.ip:80</string>
+			<string>Hiragino.ttf?</string>
 			<key>PostNotification</key>
-			<string>wiki.qaq.NMRoutine-preferencesChanged</string>
+			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>URL格式 -&gt;  /SETLRC?param=&lt;base64编码的歌词&gt;</string>
+			<string>本悬浮窗会在6996端口监听歌词数据 可以从任意设备发送数据</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -99,7 +99,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>生吃个人，我很抱歉。</string>
+			<string>详情请参考源码</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -115,6 +115,6 @@
 		</dict>
 	</array>
 	<key>title</key>
-	<string>网抑云歌词推送</string>
+	<string>桌面歌词悬浮窗</string>
 </dict>
 </plist>

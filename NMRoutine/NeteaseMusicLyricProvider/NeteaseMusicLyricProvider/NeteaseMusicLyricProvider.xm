@@ -6,9 +6,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import <objc/runtime.h>
+#import <objc/message.h>
+
 #include <substrate.h>
 
-OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0);
+OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj);
 
 //bool booted = false;
 //NSArray* bootedLrcCache;
@@ -26,8 +29,6 @@ static void _reloadSettings() {
     useTranslate = [settings[@"UseTranslate"] boolValue];
     useWebHook = [settings[@"EnableWebHook"] boolValue];
     webHookTarget = settings[@"WebHookURL"];
-
-//    NSLog(@"[Lakr233] UseTranslate:%d, EnableWebHook:%d, WebHookURL:%@", useTranslate, useWebHook, webHookTarget);
     
 }
 
