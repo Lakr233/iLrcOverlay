@@ -33,8 +33,22 @@ static void adjustLabel() {
     float width = sbsize.width > sbsize.height ? sbsize.width : sbsize.height;
     [_sharedWindow setFrame:CGRectMake(0, 0, width, height)];
     [_sharedLabel setFrame:CGRectMake(0, 0, width, height)];
-    [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
-                                         [[UIScreen mainScreen] bounds].size.height - height / 2)];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if (@available(iOS 11.0, *)) {
+            if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
+                [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                                     [[UIScreen mainScreen] bounds].size.height - height / 2 - 33)];
+            } else {
+                [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                                     [[UIScreen mainScreen] bounds].size.height - height / 2)];
+            }
+        } else {
+            [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                                 [[UIScreen mainScreen] bounds].size.height - height / 2)];
+        }
+    } else {
+        [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2, 0)];
+    }
     [_sharedLabel setCenter:CGPointMake(width / 2, height / 2)];
 }
 

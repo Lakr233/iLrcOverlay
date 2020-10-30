@@ -28,15 +28,7 @@ static CGFloat fontSize = DEFAULT_FONT_SIZE;
 static NSDate* lastUpdate;
 
 static void adjustLabel() {
-    [_sharedLabel setFont: _sharedFont];
-    float height = _sharedFont.lineHeight * 1.2;
-    CGSize sbsize = [[UIScreen mainScreen] bounds].size;
-    float width = sbsize.width > sbsize.height ? sbsize.width : sbsize.height;
-    [_sharedWindow setFrame:CGRectMake(0, 0, width, height)];
-    [_sharedLabel setFrame:CGRectMake(0, 0, width, height)];
-    [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
-                                         [[UIScreen mainScreen] bounds].size.height - height / 2)];
-    [_sharedLabel setCenter:CGPointMake(width / 2, height / 2)];
+
 }
 
 static void updateUserDefaults(void) {
