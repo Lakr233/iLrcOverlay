@@ -35,6 +35,8 @@ static void adjustLabel() {
     [_sharedLabel setFrame:CGRectMake(0, 0, width, height)];
     [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
                                          [[UIScreen mainScreen] bounds].size.height - height / 2)];
+    [_sharedLabel setCenter:CGPointMake(width / 2, height / 2)];
+    
 }
 
 static void updateUserDefaults(void) {
@@ -77,7 +79,7 @@ static void updateUserDefaults(void) {
         NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
         NSURL* target = [NSURL fileURLWithPath:location];
         
-        if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
+        if (![location isEqualToString:@"/System/Library/Fonts/AppFonts/"] && [NSFileManager.defaultManager fileExistsAtPath:location]) {
             _sharedFont = [UIFont customFontWithURL:target size:fontSize];
             _sharedFont = [_sharedFont fontWithSize:fontSize];
             requiresAppearanceUpdate = true;
@@ -169,14 +171,13 @@ static void updateUserDefaults(void) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_sharedLabel setHidden:NO];
                 [_sharedLabel setText:cpy];
-                if ([cpy isEqualToString:@"TEST DEBUG NO HIDE 0123 测试 😂"]) {
-                    return;
-                }
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if ([currentSession isEqual:_session]) {
-                        [_sharedLabel setHidden:YES];
-                    }
-                });
+                // curl http://10.44.1.141:6996/SETLRC\?param\=VEVTVCBERUJVRyBOTyBISURFIDAxMjMg5rWL6K+VIPCfmIIK
+                if (![cpy isEqualToString:@"TEST DEBUG NO HIDE 0123 测试 😂"]) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if ([currentSession isEqual:_session]) {
+                            [_sharedLabel setHidden:YES];
+                        }
+                    });                }
             });
             
             NSString* ret = [[NSString alloc] initWithFormat:@"ok %@", decodedString];
