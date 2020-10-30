@@ -85,6 +85,24 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string></string>
+			<key>defaults</key>
+			<string>wiki.qaq.DesktopLyricOverlay</string>
+			<key>key</key>
+			<string>FontSize</string>
+			<key>keyboard</key>
+			<string></string>
+			<key>label</key>
+			<string>字体大小</string>
+			<key>placeholder</key>
+			<string>12</string>
+			<key>PostNotification</key>
+			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
 			<string>本悬浮窗会在6996端口监听歌词数据 可以从任意设备发送数据</string>
@@ -99,7 +117,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>详情请参考源码 需要注销生效</string>
+			<string>详情请参考源码 开关需要注销生效</string>
 		</dict>
 		<dict>
 			<key>cell</key>

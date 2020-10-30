@@ -25,6 +25,7 @@ Contributor in this project may not show in commit history due to sync with my p
 
 - [@Lakr233](https://twitter.com/Lakr233)
 - [brendonjkding](https://github.com/brendonjkding)
+- [@i_82](https://github.com/Lessica)
 
 ## LICENSE
 

@@ -26,30 +26,15 @@ static NSString* fontFileName;
 static CGFloat fontSize = DEFAULT_FONT_SIZE;
 static NSDate* lastUpdate;
 
-static CGRect generateWindowFrame(void) {
-    
-    float height = _sharedFont.lineHeight;
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        if (@available(iOS 11.0, *)) {
-            if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
-                return CGRectMake(0,
-                                  [[UIScreen mainScreen] bounds].size.height - 40 - (height - 22),
-                                  [[UIScreen mainScreen] bounds].size.width,
-                                  height);
-            }
-        }
-        return CGRectMake(0,
-                          [[UIScreen mainScreen] bounds].size.height - 22 - (height - 22),
-                          [[UIScreen mainScreen] bounds].size.width,
-                          height);
-    } else {
-        return CGRectMake(0,
-                          0,
-                          [[UIScreen mainScreen] bounds].size.width,
-                          height);
-    }
-    
+static void adjustLabel() {
+    [_sharedLabel setFont: _sharedFont];
+    float height = _sharedFont.lineHeight * 1.2;
+    CGSize sbsize = [[UIScreen mainScreen] bounds].size;
+    float width = sbsize.width > sbsize.height ? sbsize.width : sbsize.height;
+    [_sharedWindow setFrame:CGRectMake(0, 0, width, height)];
+    [_sharedLabel setFrame:CGRectMake(0, 0, width, height)];
+    [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                         [[UIScreen mainScreen] bounds].size.height - height / 2)];
 }
 
 static void updateUserDefaults(void) {
@@ -80,12 +65,13 @@ static void updateUserDefaults(void) {
     float newFontSize;
     if (settings[@"FontSize"]) {
         newFontSize = [settings[@"FontSize"] floatValue];
-    } else {
+    }
+    if (newFontSize < 2) {
         newFontSize = DEFAULT_FONT_SIZE;
     }
     requiresAppearanceUpdate |= !(fontSize == [settings[@"FontSize"] floatValue]);
     fontSize = newFontSize;
-
+    
     if (fontFileName != settings[@"FontFileName"]) {
         fontFileName = settings[@"FontFileName"];
         NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
@@ -102,10 +88,10 @@ static void updateUserDefaults(void) {
     
     if (_sharedLabel && requiresAppearanceUpdate) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_sharedLabel setFont: _sharedFont];
+            adjustLabel();
         });
     }
-
+    
 }
 
 %hook CAWindowServerDisplay
@@ -131,15 +117,14 @@ static void updateUserDefaults(void) {
     
     if (enabled) {
         
-        _sharedWindow = [[LyricWindow alloc] initWithFrame:generateWindowFrame()];
+        _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
-        _sharedFont = [_sharedFont fontWithSize:fontSize];
-        [_sharedLabel setFont: _sharedFont];
+        
+        adjustLabel();
         
         NSString* welcome = @"👀";
         
         [_sharedLabel setText:welcome];
-        [_sharedLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [_sharedLabel setTextColor:[[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:0.888]];
         [_sharedLabel setBackgroundColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.233]];
         [_sharedLabel setTextAlignment:NSTextAlignmentCenter];
@@ -182,16 +167,20 @@ static void updateUserDefaults(void) {
             __block NSString* cpy = [decodedString mutableCopy];
             __block NSString* currentSession = [_session mutableCopy];
             dispatch_async(dispatch_get_main_queue(), ^{
-                    [_sharedLabel setHidden:NO];
-                    [_sharedLabel setText:cpy];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        if ([currentSession isEqual:_session]) {
-                            [_sharedLabel setHidden:YES];
-                        }
-                    });
+                [_sharedLabel setHidden:NO];
+                [_sharedLabel setText:cpy];
+                if ([cpy isEqualToString:@"TEST DEBUG NO HIDE 0123 测试 😂"]) {
+                    return;
+                }
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if ([currentSession isEqual:_session]) {
+                        [_sharedLabel setHidden:YES];
+                    }
+                });
             });
             
-            return [GCDWebServerDataResponse responseWithHTML:@"ok"];
+            NSString* ret = [[NSString alloc] initWithFormat:@"ok %@", decodedString];
+            return [GCDWebServerDataResponse responseWithHTML:ret];
         }];
         [_s startWithPort:6996 bonjourName:nil];
         
