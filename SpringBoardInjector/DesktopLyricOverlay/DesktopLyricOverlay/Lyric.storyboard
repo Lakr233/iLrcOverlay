@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eLp-ls-7hL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Lyric Controller-->
+        <scene sceneID="Mk1-s7-8qL">
+            <objects>
+                <viewController id="eLp-ls-7hL" customClass="LyricController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DSL-uL-r2m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuN-zQ-SvH">
+                                <rect key="frame" x="0.0" y="840" width="414" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DS2-eU-Mtc">
+                                        <rect key="frame" x="189.5" y="2.5" width="35.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.88" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.23000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="DS2-eU-Mtc" firstAttribute="centerX" secondItem="HuN-zQ-SvH" secondAttribute="centerX" id="fBC-Bb-EcR"/>
+                                    <constraint firstItem="DS2-eU-Mtc" firstAttribute="centerY" secondItem="HuN-zQ-SvH" secondAttribute="centerY" id="hGq-qH-8sN"/>
+                                    <constraint firstAttribute="bottom" secondItem="DS2-eU-Mtc" secondAttribute="bottom" constant="2.5" id="iR8-8k-ePC"/>
+                                    <constraint firstItem="DS2-eU-Mtc" firstAttribute="top" secondItem="HuN-zQ-SvH" secondAttribute="top" constant="2.5" id="jMj-dY-Hr9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fOg-nX-seI" firstAttribute="trailing" secondItem="HuN-zQ-SvH" secondAttribute="trailing" id="1rm-sN-LcH"/>
+                            <constraint firstItem="HuN-zQ-SvH" firstAttribute="bottom" secondItem="fOg-nX-seI" secondAttribute="bottom" id="mhv-bo-Tia"/>
+                            <constraint firstItem="HuN-zQ-SvH" firstAttribute="centerX" secondItem="DSL-uL-r2m" secondAttribute="centerX" id="wLD-zn-kx4"/>
+                            <constraint firstItem="HuN-zQ-SvH" firstAttribute="leading" secondItem="fOg-nX-seI" secondAttribute="leading" id="z2U-Rf-0xe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fOg-nX-seI"/>
+                    </view>
+                    <connections>
+                        <outlet property="bannerView" destination="HuN-zQ-SvH" id="QLI-Is-zJh"/>
+                        <outlet property="lyricLabel" destination="DS2-eU-Mtc" id="2HK-Un-nGh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vfd-zs-Wbi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-126" y="84"/>
+        </scene>
+    </scenes>
+</document>

@@ -30,6 +30,11 @@
 		508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */; };
 		508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926D323E12C4B00E90853 /* MobileCoreServices.framework */; platformFilter = ios; };
 		508926D523E12C5300E90853 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C423E12C0500E90853 /* libz.tbd */; };
+		D674A7D1254BDAA30086E47A /* LyricController.h in Headers */ = {isa = PBXBuildFile; fileRef = D674A7CF254BDAA30086E47A /* LyricController.h */; };
+		D674A7D2254BDAA30086E47A /* LyricController.m in Sources */ = {isa = PBXBuildFile; fileRef = D674A7D0254BDAA30086E47A /* LyricController.m */; };
+		D674A7D5254BDC000086E47A /* LyricConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D674A7D3254BDC000086E47A /* LyricConfig.h */; };
+		D674A7D6254BDC000086E47A /* LyricConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D674A7D4254BDC000086E47A /* LyricConfig.m */; };
+		D674A7D8254BE7C90086E47A /* Lyric.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = D674A7CE254BD87F0086E47A /* Lyric.storyboard */; };
 		D6EDEC53254B1F4400AEBD55 /* LyricWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */; };
 		D6EDEC54254B1F4400AEBD55 /* LyricWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */; };
 /* End PBXBuildFile section */
@@ -84,6 +89,11 @@
 		508926C423E12C0500E90853 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		508926C523E12C0B00E90853 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		508926D323E12C4B00E90853 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D674A7CE254BD87F0086E47A /* Lyric.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lyric.storyboard; sourceTree = "<group>"; };
+		D674A7CF254BDAA30086E47A /* LyricController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricController.h; sourceTree = "<group>"; };
+		D674A7D0254BDAA30086E47A /* LyricController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricController.m; sourceTree = "<group>"; };
+		D674A7D3254BDC000086E47A /* LyricConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricConfig.h; sourceTree = "<group>"; };
+		D674A7D4254BDC000086E47A /* LyricConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricConfig.m; sourceTree = "<group>"; };
 		D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricWindow.h; sourceTree = "<group>"; };
 		D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +185,11 @@
 				508926A523E12AEE00E90853 /* GCDWebServer */,
 				D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */,
 				D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */,
+				D674A7D3254BDC000086E47A /* LyricConfig.h */,
+				D674A7D4254BDC000086E47A /* LyricConfig.m */,
+				D674A7CF254BDAA30086E47A /* LyricController.h */,
+				D674A7D0254BDAA30086E47A /* LyricController.m */,
+				D674A7CE254BD87F0086E47A /* Lyric.storyboard */,
 				5089269A23E1290100E90853 /* DesktopLyricOverlay.xm */,
 				5089269B23E1290100E90853 /* DesktopLyricOverlay.mm */,
 				5089268F23E1290100E90853 /* Package */,
@@ -275,6 +290,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D674A7D1254BDAA30086E47A /* LyricController.h in Headers */,
+				D674A7D5254BDC000086E47A /* LyricConfig.h in Headers */,
 				D6EDEC53254B1F4400AEBD55 /* LyricWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +308,7 @@
 				5089268123E1290100E90853 /* Frameworks */,
 				5089268223E1290100E90853 /* Headers */,
 				5089268323E1290100E90853 /* ShellScript */,
+				D674A7D7254BE1460086E47A /* Copy XIBs */,
 			);
 			buildRules = (
 			);
@@ -348,7 +366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos";
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos\n";
 		};
 		5089268323E1290100E90853 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -365,7 +383,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/MonkeyDev/bin/md --xcbp";
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp\n";
+		};
+		D674A7D7254BE1460086E47A /* Copy XIBs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy XIBs";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app\"\ncp -r \"$BUILT_PRODUCTS_DIR/Lyric.storyboardc\" \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app/Lyric.storyboardc\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -374,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D674A7D8254BE7C90086E47A /* Lyric.storyboard in Sources */,
 				5089269C23E1290100E90853 /* DesktopLyricOverlay.mm in Sources */,
 				508926C623E12C2300E90853 /* GCDWebServerResponse.m in Sources */,
 				5062080B254ADE7A002BE37C /* UIFont+WDCustomLoader.m in Sources */,
@@ -381,6 +418,7 @@
 				508926C723E12C2300E90853 /* GCDWebServerErrorResponse.m in Sources */,
 				508926C823E12C2300E90853 /* GCDWebServerRequest.m in Sources */,
 				508926C923E12C2300E90853 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
+				D674A7D6254BDC000086E47A /* LyricConfig.m in Sources */,
 				508926CA23E12C2300E90853 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				508926CB23E12C2300E90853 /* GCDWebServerDataRequest.m in Sources */,
 				508926CC23E12C2300E90853 /* GCDWebServerFileResponse.m in Sources */,
@@ -389,6 +427,7 @@
 				508926CF23E12C2300E90853 /* GCDWebServerDataResponse.m in Sources */,
 				508926D023E12C2300E90853 /* GCDWebServerConnection.m in Sources */,
 				508926D123E12C2300E90853 /* GCDWebServerFileRequest.m in Sources */,
+				D674A7D2254BDAA30086E47A /* LyricController.m in Sources */,
 				508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,12 +505,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DEVELOPMENT_TEAM = GXZ23M5TP2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DesktopLyricOverlay/DesktopLyricOverlay-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
@@ -479,7 +519,7 @@
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = NO;
-				MonkeyDevInstallOnProfiling = NO;
+				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = "SpringBoard backboardd";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -497,12 +537,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CQ2J5N72GP;
+				DEVELOPMENT_TEAM = GXZ23M5TP2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DesktopLyricOverlay/DesktopLyricOverlay-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MonkeyDevBuildPackageOnAnyBuild = YES;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
@@ -510,7 +551,7 @@
 				MonkeyDevDevicePassword = alpine;
 				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = NO;
-				MonkeyDevInstallOnProfiling = NO;
+				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = "SpringBoard backboardd";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
