@@ -36,9 +36,7 @@ static void adjustLabel() {
     [_sharedLabel setFrame:CGRectMake(0, 0, width, height)];
     [_sharedWindow setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
                                          [[UIScreen mainScreen] bounds].size.height - height / 2)];
-    [_sharedLabel setCenter:CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
-                                         [[UIScreen mainScreen] bounds].size.height - height / 2)];
-    
+    [_sharedLabel setCenter:CGPointMake(width / 2, height / 2)];
 }
 
 static void updateUserDefaults(void) {
@@ -81,7 +79,7 @@ static void updateUserDefaults(void) {
         NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
         NSURL* target = [NSURL fileURLWithPath:location];
         
-        if (![location isEqual:@"/System/Library/Fonts/AppFonts/"] && [NSFileManager.defaultManager fileExistsAtPath:location]) {
+        if (![location isEqualToString:@"/System/Library/Fonts/AppFonts/"] && [NSFileManager.defaultManager fileExistsAtPath:location]) {
             _sharedFont = [UIFont customFontWithURL:target size:fontSize];
             _sharedFont = [_sharedFont fontWithSize:fontSize];
             requiresAppearanceUpdate = true;
@@ -122,7 +120,7 @@ static void updateUserDefaults(void) {
 @class CAWindowServerDisplay; @class SpringBoard; 
 static unsigned int (*_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$)(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
 
-#line 100 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 98 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
 
 static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, CGPoint arg1, NSArray <NSNumber *> * arg2) {
@@ -198,14 +196,14 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_sharedLabel setHidden:NO];
                 [_sharedLabel setText:cpy];
-                if ([cpy isEqualToString:@"TEST DEBUG NO HIDE 0123 测试 😂"]) {
-                    return;
+                
+                if (![cpy containsString:@"TEST DEBUG NO HIDE 0123 测试 😂"]) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if ([currentSession isEqual:_session]) {
+                            [_sharedLabel setHidden:YES];
+                        }
+                    });
                 }
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if ([currentSession isEqual:_session]) {
-                        [_sharedLabel setHidden:YES];
-                    }
-                });
             });
             
             NSString* ret = [[NSString alloc] initWithFormat:@"ok %@", decodedString];
@@ -221,4 +219,4 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$CAWindowServerDisplay = objc_getClass("CAWindowServerDisplay"); { MSHookMessageEx(_logos_class$_ungrouped$CAWindowServerDisplay, @selector(contextIdAtPosition:excludingContextIds:), (IMP)&_logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$, (IMP*)&_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$);}Class _logos_class$_ungrouped$SpringBoard = objc_getClass("SpringBoard"); { MSHookMessageEx(_logos_class$_ungrouped$SpringBoard, @selector(applicationDidFinishLaunching:), (IMP)&_logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$, (IMP*)&_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$);}} }
-#line 196 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
+#line 194 "/Users/qaq/Documents/GitHub/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
