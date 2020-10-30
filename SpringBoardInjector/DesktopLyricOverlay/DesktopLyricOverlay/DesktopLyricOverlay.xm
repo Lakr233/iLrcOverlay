@@ -12,6 +12,7 @@
 #import "LyricWindow.h"
 
 #define TWEAK_ID "wiki.qaq.DesktopLyricOverlay"
+#define DEFAULT_FONT_SIZE 12
 
 NSString* _session = @"";
 
@@ -22,9 +23,45 @@ static UIFont* _sharedFont;
 static bool enabled;
 static bool useLandscapeMode;
 static NSString* fontFileName;
-static CGFloat fontSize = 12;
+static CGFloat fontSize = DEFAULT_FONT_SIZE;
+static NSDate* lastUpdate;
+
+static CGRect generateWindowFrame(void) {
+    
+    float height = _sharedFont.lineHeight;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if (@available(iOS 11.0, *)) {
+            if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
+                return CGRectMake(0,
+                                  [[UIScreen mainScreen] bounds].size.height - 40 - (height - 22),
+                                  [[UIScreen mainScreen] bounds].size.width,
+                                  height);
+            }
+        }
+        return CGRectMake(0,
+                          [[UIScreen mainScreen] bounds].size.height - 22 - (height - 22),
+                          [[UIScreen mainScreen] bounds].size.width,
+                          height);
+    } else {
+        return CGRectMake(0,
+                          0,
+                          [[UIScreen mainScreen] bounds].size.width,
+                          height);
+    }
+    
+}
 
 static void updateUserDefaults(void) {
+    
+    NSDate* current = [[NSDate alloc] init];
+    double gap = [current timeIntervalSinceDate:lastUpdate];
+    if (gap < 5) {
+        return;
+    }
+    lastUpdate = current;
+    
+    bool requiresAppearanceUpdate = false;
     
     NSString *plistPath = @"/var/mobile/Library/Preferences/" TWEAK_ID ".plist";
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
@@ -39,12 +76,16 @@ static void updateUserDefaults(void) {
     } else {
         useLandscapeMode = false;
     }
-    if (settings[@"FontSize"]) {
-        fontSize = [settings[@"FontSize"] floatValue];
-    } else {
-        fontSize = 14;
-    }
     
+    float newFontSize;
+    if (settings[@"FontSize"]) {
+        newFontSize = [settings[@"FontSize"] floatValue];
+    } else {
+        newFontSize = DEFAULT_FONT_SIZE;
+    }
+    requiresAppearanceUpdate |= !(fontSize == [settings[@"FontSize"] floatValue]);
+    fontSize = newFontSize;
+
     if (fontFileName != settings[@"FontFileName"]) {
         fontFileName = settings[@"FontFileName"];
         NSString* location = [[NSString alloc] initWithFormat:@"/System/Library/Fonts/AppFonts/%@", fontFileName];
@@ -53,14 +94,16 @@ static void updateUserDefaults(void) {
         if ([NSFileManager.defaultManager fileExistsAtPath:location]) {
             _sharedFont = [UIFont customFontWithURL:target size:fontSize];
             _sharedFont = [_sharedFont fontWithSize:fontSize];
+            requiresAppearanceUpdate = true;
         } else {
             _sharedFont = [UIFont systemFontOfSize:fontSize];
         }
-        if (_sharedLabel) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_sharedLabel setFont: _sharedFont];
-            });
-        }
+    }
+    
+    if (_sharedLabel && requiresAppearanceUpdate) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_sharedLabel setFont: _sharedFont];
+        });
     }
 
 }
@@ -88,28 +131,7 @@ static void updateUserDefaults(void) {
     
     if (enabled) {
         
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            if (@available(iOS 11.0, *)) {
-                if ([[UIScreen mainScreen] nativeBounds].size.height > 2430) {
-                    _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
-                                                                               [[UIScreen mainScreen] bounds].size.height - 40,
-                                                                               [[UIScreen mainScreen] bounds].size.width,
-                                                                               22)];
-                }
-            }
-            if (!_sharedWindow) {
-                _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
-                                                                           [[UIScreen mainScreen] bounds].size.height - 22,
-                                                                           [[UIScreen mainScreen] bounds].size.width,
-                                                                           22)];
-            }
-        } else {
-            _sharedWindow = [[LyricWindow alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       [[UIScreen mainScreen] bounds].size.width,
-                                                                       22)];
-        }
-        
+        _sharedWindow = [[LyricWindow alloc] initWithFrame:generateWindowFrame()];
         _sharedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 22)];
         _sharedFont = [_sharedFont fontWithSize:fontSize];
         [_sharedLabel setFont: _sharedFont];
@@ -150,7 +172,7 @@ static void updateUserDefaults(void) {
             NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
             
             if ([decodedString isEqual:@""]) {
-                return [GCDWebServerDataResponse responseWithHTML:@"花QQQ"];
+                return [GCDWebServerDataResponse responseWithHTML:@"Invalid Value"];
             }
             
             updateUserDefaults();
@@ -169,7 +191,7 @@ static void updateUserDefaults(void) {
                     });
             });
             
-            return [GCDWebServerDataResponse responseWithHTML:@"花Q"];
+            return [GCDWebServerDataResponse responseWithHTML:@"ok"];
         }];
         [_s startWithPort:6996 bonjourName:nil];
         
