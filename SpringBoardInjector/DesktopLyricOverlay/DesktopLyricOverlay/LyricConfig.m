@@ -14,10 +14,11 @@
     if (self = [super init]) {
         _enabled = [dict[@"Enabled"] boolValue];
         _useLandscapeMode = [dict[@"UseLandscapeMode"] boolValue];
+        _placedAtTop = [dict[@"PlacedAtTop"] boolValue];
         NSString *fontPath = [@"/System/Library/Fonts/AppFonts/" stringByAppendingPathComponent:(NSString *)(dict[@"FontFileName"] ?: @"Hiragino.ttf")];
         _font = [UIFont customFontWithURL:[NSURL fileURLWithPath:fontPath] size:[(NSNumber *)(dict[@"FontSize"] ?: @(14.0)) doubleValue]];
         if (!_font) {
-            _font = [UIFont systemFontOfSize:14.0];
+            _font = [UIFont systemFontOfSize:[(NSNumber *)(dict[@"FontSize"] ?: @(14.0)) doubleValue]];
         }
         _createdAt = [NSDate date];
     }

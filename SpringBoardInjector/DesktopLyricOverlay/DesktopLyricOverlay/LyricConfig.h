@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 @property (nonatomic, assign, readonly) BOOL useLandscapeMode;
+@property (nonatomic, assign, readonly) BOOL placedAtTop;
 @property (nonatomic, strong, readonly) UIFont *font;
 @property (nonatomic, strong, readonly) NSDate *createdAt;
 

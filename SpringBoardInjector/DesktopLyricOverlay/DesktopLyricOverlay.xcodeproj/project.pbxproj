@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,13 +28,14 @@
 		508926D023E12C2300E90853 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BC23E12AEE00E90853 /* GCDWebServerConnection.m */; };
 		508926D123E12C2300E90853 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BD23E12AEE00E90853 /* GCDWebServerFileRequest.m */; };
 		508926D223E12C2300E90853 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 508926BF23E12AEE00E90853 /* GCDWebServerStreamedResponse.m */; };
-		508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926D323E12C4B00E90853 /* MobileCoreServices.framework */; platformFilter = ios; };
 		508926D523E12C5300E90853 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 508926C423E12C0500E90853 /* libz.tbd */; };
 		D674A7D1254BDAA30086E47A /* LyricController.h in Headers */ = {isa = PBXBuildFile; fileRef = D674A7CF254BDAA30086E47A /* LyricController.h */; };
 		D674A7D2254BDAA30086E47A /* LyricController.m in Sources */ = {isa = PBXBuildFile; fileRef = D674A7D0254BDAA30086E47A /* LyricController.m */; };
 		D674A7D5254BDC000086E47A /* LyricConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D674A7D3254BDC000086E47A /* LyricConfig.h */; };
 		D674A7D6254BDC000086E47A /* LyricConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D674A7D4254BDC000086E47A /* LyricConfig.m */; };
 		D674A7D8254BE7C90086E47A /* Lyric.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = D674A7CE254BD87F0086E47A /* Lyric.storyboard */; };
+		D69EDB0A254D12180073B525 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D69EDB09254D12180073B525 /* CoreFoundation.framework */; };
+		D69EDB0C254D1D030073B525 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D69EDB0B254D1D030073B525 /* CoreServices.framework */; };
 		D6EDEC53254B1F4400AEBD55 /* LyricWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */; };
 		D6EDEC54254B1F4400AEBD55 /* LyricWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,8 @@
 		D674A7D0254BDAA30086E47A /* LyricController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricController.m; sourceTree = "<group>"; };
 		D674A7D3254BDC000086E47A /* LyricConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricConfig.h; sourceTree = "<group>"; };
 		D674A7D4254BDC000086E47A /* LyricConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricConfig.m; sourceTree = "<group>"; };
+		D69EDB09254D12180073B525 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		D69EDB0B254D1D030073B525 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		D6EDEC51254B1F4400AEBD55 /* LyricWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyricWindow.h; sourceTree = "<group>"; };
 		D6EDEC52254B1F4400AEBD55 /* LyricWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyricWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,9 +110,10 @@
 				508926D523E12C5300E90853 /* libz.tbd in Frameworks */,
 				5089268B23E1290100E90853 /* Foundation.framework in Frameworks */,
 				508926C323E12BFE00E90853 /* CFNetwork.framework in Frameworks */,
+				D69EDB0A254D12180073B525 /* CoreFoundation.framework in Frameworks */,
 				50620813254AE64C002BE37C /* CoreGraphics.framework in Frameworks */,
 				5062080E254AE59A002BE37C /* CoreText.framework in Frameworks */,
-				508926D423E12C4C00E90853 /* MobileCoreServices.framework in Frameworks */,
+				D69EDB0C254D1D030073B525 /* CoreServices.framework in Frameworks */,
 				5089268D23E1290100E90853 /* CydiaSubstrate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +168,8 @@
 		5089268723E1290100E90853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D69EDB0B254D1D030073B525 /* CoreServices.framework */,
+				D69EDB09254D12180073B525 /* CoreFoundation.framework */,
 				50620812254AE64C002BE37C /* CoreGraphics.framework */,
 				5062080F254AE5F2002BE37C /* CoreData.framework */,
 				5062080D254AE59A002BE37C /* CoreText.framework */,
@@ -401,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app\"\ncp -r \"$BUILT_PRODUCTS_DIR/Lyric.storyboardc\" \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app/Lyric.storyboardc\"\n\n";
+			shellScript = "mkdir -p \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app\"\nrm -r \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app/Lyric.storyboardc\"\ncp -r \"$BUILT_PRODUCTS_DIR/Lyric.storyboardc\" \"$PROJECT_DIR/$TARGET_NAME/Package/System/Library/CoreServices/SpringBoard.app/Lyric.storyboardc\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

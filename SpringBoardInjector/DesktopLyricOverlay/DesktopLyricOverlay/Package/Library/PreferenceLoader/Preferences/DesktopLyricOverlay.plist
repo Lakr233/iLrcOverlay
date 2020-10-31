@@ -53,7 +53,21 @@
 			<key>key</key>
 			<string>UseLandscapeMode</string>
 			<key>label</key>
-			<string>横屏模式 (测试)</string>
+			<string>横屏模式</string>
+			<key>PostNotification</key>
+			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>wiki.qaq.DesktopLyricOverlay</string>
+			<key>key</key>
+			<string>PlacedAtTop</string>
+			<key>label</key>
+			<string>置于顶部</string>
 			<key>PostNotification</key>
 			<string>wiki.qaq.DesktopLyricOverlay-preferencesChanged</string>
 		</dict>
@@ -105,7 +119,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>本悬浮窗会在6996端口监听歌词数据 可以从任意设备发送数据</string>
+			<string>本悬浮窗会在6996端口监听歌词数据，可以从任意设备发送数据。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -117,7 +131,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>详情请参考源码 开关需要注销生效</string>
+			<string>详情请参考源码</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -132,7 +146,5 @@
 			<string>© 2020 Lakr Aream @Lakr233</string>
 		</dict>
 	</array>
-	<key>title</key>
-	<string>需要注销生效</string>
 </dict>
 </plist>
