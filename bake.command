@@ -1,13 +1,18 @@
 #!/bin/bash
+
+echo "Starting Stage 0"
+
 cd "$(dirname "$0")"
 rm -rf DeliveredBakeData
 rm -rf artifacts
 mkdir DeliveredBakeData
-rsync -av --progress ./ ./DeliveredBakeData --exclude DeliveredBakeData
+rsync -a ./ ./DeliveredBakeData --exclude DeliveredBakeData
 cd DeliveredBakeData
 SAFELOCATION=$(pwd) && echo $SAFELOCATION
 rm -rf artifacts
 mkdir artifacts
+
+echo "Starting Stage 1"
 
 cd $SAFELOCATION/SpringBoardInjector/DesktopLyricOverlay
 rm -rf Packages/*
@@ -53,6 +58,8 @@ xcodebuild clean build -destination generic/platform=iOS \
   MonkeyDevBuildPackageOnAnyBuild="YES" \
   | xcpretty
 cp Packages/*.deb $SAFELOCATION/artifacts/
+
+echo "Starting Stage 2"
 
 cd $SAFELOCATION/BigBossConnect
 rm -rf temp && mkdir temp
