@@ -14,16 +14,26 @@ OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTIN
 static bool useWebHook = false;
 static NSString* webHookTarget = @"";
 
-static void _reloadSettings() {
+static void UpdateUserDefaults() {
     
-    NSString *bundleId = @"wiki.qaq.QQRoutine";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    // Check if system app (all system apps have this as their home directory). This path may change but it's unlikely.
+    BOOL isSystem = [NSHomeDirectory() isEqualToString:@"/var/mobile"];
+    // Retrieve preferences
+    NSDictionary *prefs = nil;
+    if (isSystem) {
+        CFArrayRef keyList = CFPreferencesCopyKeyList(CFSTR("wiki.qaq.QQRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (keyList) {
+            prefs = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, CFSTR("wiki.qaq.QQRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
+            if(!prefs) prefs = [NSDictionary new];
+            CFRelease(keyList);
+        }
+    }
+    if (!prefs) {
+        prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/wiki.qaq.QQRoutine.plist"];
+    }
     
-    useWebHook = [settings[@"EnableWebHook"] boolValue];
-    webHookTarget = settings[@"WebHookURL"];
-
-//    NSLog(@"[Lakr233] UseTranslate:%d, EnableWebHook:%d, WebHookURL:%@", useTranslate, useWebHook, webHookTarget);
+    useWebHook = prefs[@"EnableWebHook"] ? [prefs[@"EnableWebHook"] boolValue] : NO;
+    webHookTarget = prefs[@"WebHookURL"] ? prefs[@"WebHookURL"] : @"";
     
 }
 
@@ -91,10 +101,6 @@ MyLyric* lstLyric;
 %hook AudioPlayManager
 
 - (void)updateProgress:(id)arg1 {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _reloadSettings(); // Bad for performance but works greate
-    });
     
     %orig;
 
@@ -216,6 +222,9 @@ MyLyric* lstLyric;
 %ctor {
 //    NSLog(@"[Lakr233] QQMusic Lyric Provider Loaded!");
     %init(QQMusicHook);
-    allLyrics=[NSMutableDictionary dictionaryWithCapacity:2048];
-    _reloadSettings();
+    allLyrics=[NSMutableDictionary dictionaryWithCapacity:4096];
+    UpdateUserDefaults();
+    
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)UpdateUserDefaults, CFSTR("wiki.qaq.NMRoutine-preferencesChanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+    
 }

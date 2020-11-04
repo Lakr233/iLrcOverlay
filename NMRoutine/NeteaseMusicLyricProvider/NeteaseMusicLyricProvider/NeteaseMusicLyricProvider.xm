@@ -20,23 +20,31 @@ static bool useTranslate = false; // DONT MODIFY THIS
 static bool useWebHook = false;
 static NSString* webHookTarget = @"";
 
-static void _reloadSettings() {
-
-    NSString *bundleId = @"wiki.qaq.NMRoutine";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+static void UpdateUserDefaults() {
     
-    useTranslate = [settings[@"UseTranslate"] boolValue];
-    useWebHook = [settings[@"EnableWebHook"] boolValue];
-    webHookTarget = settings[@"WebHookURL"];
+    // Check if system app (all system apps have this as their home directory). This path may change but it's unlikely.
+    BOOL isSystem = [NSHomeDirectory() isEqualToString:@"/var/mobile"];
+    // Retrieve preferences
+    NSDictionary *prefs = nil;
+    if (isSystem) {
+        CFArrayRef keyList = CFPreferencesCopyKeyList(CFSTR("wiki.qaq.NMRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (keyList) {
+            prefs = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, CFSTR("wiki.qaq.NMRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
+            if(!prefs) prefs = [NSDictionary new];
+            CFRelease(keyList);
+        }
+    }
+    if (!prefs) {
+        prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/wiki.qaq.NMRoutine.plist"];
+    }
+    
+    useTranslate = prefs[@"UseTranslate"] ? [prefs[@"UseTranslate"] boolValue] : YES;
+    useWebHook = prefs[@"EnableWebHook"] ? [prefs[@"EnableWebHook"] boolValue] : NO;
+    webHookTarget = prefs[@"WebHookURL"] ? prefs[@"WebHookURL"] : @"";
     
 }
 
 static void updateLyric(id manager, signed index) {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _reloadSettings(); // Bad for performance but works greate
-    });
     
     NSArray *lyricsArray;
     if ([manager respondsToSelector:NSSelectorFromString(@"lyricsArray")]) {
@@ -65,7 +73,6 @@ static void updateLyric(id manager, signed index) {
         SEL _sel = NSSelectorFromString(@"lyric");
         _lrc = [lrcObject performSelector:_sel];
     }
-    
     
     // Web Stuffs
     NSData *data = [_lrc dataUsingEncoding:NSUTF8StringEncoding];
@@ -149,7 +156,10 @@ static void updateLyric(id manager, signed index) {
 //                                    CFSTR("wiki.qaq.NMRoutine-preferencesChanged-UseTranslate"),
 //                                    NULL,
 //                                    CFNotificationSuspensionBehaviorCoalesce);
-    _reloadSettings();
+    UpdateUserDefaults();
+    
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)UpdateUserDefaults, CFSTR("wiki.qaq.NMRoutine-preferencesChanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+    
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        while (true) {
 //            _reloadSettings();

@@ -15,16 +15,26 @@ OBJC_EXPORT id objc_retainAutoreleaseReturnValue(id obj) __OSX_AVAILABLE_STARTIN
 static bool useWebHook = false;
 static NSString* webHookTarget = @"";
 
-static void _reloadSettings() {
+static void UpdateUserDefaults() {
     
-    NSString *bundleId = @"wiki.qaq.QQRoutine";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
-    useWebHook = [settings[@"EnableWebHook"] boolValue];
-    webHookTarget = settings[@"WebHookURL"];
-
-
+    BOOL isSystem = [NSHomeDirectory() isEqualToString:@"/var/mobile"];
+    
+    NSDictionary *prefs = nil;
+    if (isSystem) {
+        CFArrayRef keyList = CFPreferencesCopyKeyList(CFSTR("wiki.qaq.QQRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (keyList) {
+            prefs = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, CFSTR("wiki.qaq.QQRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
+            if(!prefs) prefs = [NSDictionary new];
+            CFRelease(keyList);
+        }
+    }
+    if (!prefs) {
+        prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/wiki.qaq.QQRoutine.plist"];
+    }
+    
+    useWebHook = prefs[@"EnableWebHook"] ? [prefs[@"EnableWebHook"] boolValue] : NO;
+    webHookTarget = prefs[@"WebHookURL"] ? prefs[@"WebHookURL"] : @"";
     
 }
 
@@ -108,19 +118,15 @@ MyLyric* lstLyric;
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class AudioPlayManager; @class LyricManager; 
+@class LyricManager; @class AudioPlayManager; 
 
 
-#line 89 "/Users/qaq/Documents/GitHub/iLrcOverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
+#line 99 "/Users/qaq/Documents/GitHub/iLrcOverlay/QQMusicRoutine/QQMusicLyricsProvider/QQMusicLyricsProvider/QQMusicLyricsProvider.xm"
 static void (*_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$)(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$QQMusicHook$AudioPlayManager$updateProgress$(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST, SEL, id); static id (*_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$)(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id, unsigned long long); static id (*_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$)(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id); static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$(_LOGOS_SELF_TYPE_NORMAL LyricManager* _LOGOS_SELF_CONST, SEL, id); 
 
 
 
 static void _logos_method$QQMusicHook$AudioPlayManager$updateProgress$(_LOGOS_SELF_TYPE_NORMAL AudioPlayManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _reloadSettings(); 
-    });
     
     _logos_orig$QQMusicHook$AudioPlayManager$updateProgress$(self, _cmd, arg1);
 
@@ -239,9 +245,12 @@ static id _logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$(_LOGOS
 
  
 
-static __attribute__((constructor)) void _logosLocalCtor_f14d8844(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_94fecee8(int __unused argc, char __unused **argv, char __unused **envp) {
 
     {Class _logos_class$QQMusicHook$AudioPlayManager = objc_getClass("AudioPlayManager"); { MSHookMessageEx(_logos_class$QQMusicHook$AudioPlayManager, @selector(updateProgress:), (IMP)&_logos_method$QQMusicHook$AudioPlayManager$updateProgress$, (IMP*)&_logos_orig$QQMusicHook$AudioPlayManager$updateProgress$);}Class _logos_class$QQMusicHook$LyricManager = objc_getClass("LyricManager"); { MSHookMessageEx(_logos_class$QQMusicHook$LyricManager, @selector(getLyricObjectFromLocal:lyricFrom:), (IMP)&_logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$, (IMP*)&_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$lyricFrom$);}{ MSHookMessageEx(_logos_class$QQMusicHook$LyricManager, @selector(getLyricObjectFromLocal:), (IMP)&_logos_method$QQMusicHook$LyricManager$getLyricObjectFromLocal$, (IMP*)&_logos_orig$QQMusicHook$LyricManager$getLyricObjectFromLocal$);}}
     allLyrics=[NSMutableDictionary dictionaryWithCapacity:2048];
-    _reloadSettings();
+    UpdateUserDefaults();
+    
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)UpdateUserDefaults, CFSTR("wiki.qaq.NMRoutine-preferencesChanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+    
 }

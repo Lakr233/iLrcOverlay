@@ -21,23 +21,31 @@ static bool useTranslate = false;
 static bool useWebHook = false;
 static NSString* webHookTarget = @"";
 
-static void _reloadSettings() {
-
-    NSString *bundleId = @"wiki.qaq.NMRoutine";
-    NSString *plistPath = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleId];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+static void UpdateUserDefaults() {
     
-    useTranslate = [settings[@"UseTranslate"] boolValue];
-    useWebHook = [settings[@"EnableWebHook"] boolValue];
-    webHookTarget = settings[@"WebHookURL"];
+    
+    BOOL isSystem = [NSHomeDirectory() isEqualToString:@"/var/mobile"];
+    
+    NSDictionary *prefs = nil;
+    if (isSystem) {
+        CFArrayRef keyList = CFPreferencesCopyKeyList(CFSTR("wiki.qaq.NMRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+        if (keyList) {
+            prefs = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, CFSTR("wiki.qaq.NMRoutine"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
+            if(!prefs) prefs = [NSDictionary new];
+            CFRelease(keyList);
+        }
+    }
+    if (!prefs) {
+        prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/wiki.qaq.NMRoutine.plist"];
+    }
+    
+    useTranslate = prefs[@"UseTranslate"] ? [prefs[@"UseTranslate"] boolValue] : YES;
+    useWebHook = prefs[@"EnableWebHook"] ? [prefs[@"EnableWebHook"] boolValue] : NO;
+    webHookTarget = prefs[@"WebHookURL"] ? prefs[@"WebHookURL"] : @"";
     
 }
 
 static void updateLyric(id manager, signed index) {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _reloadSettings(); 
-    });
     
     NSArray *lyricsArray;
     if ([manager respondsToSelector:NSSelectorFromString(@"lyricsArray")]) {
@@ -122,7 +130,7 @@ static void updateLyric(id manager, signed index) {
 @class NMPlayerManager; 
 static void (*_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$)(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST, SEL, signed); 
 
-#line 100 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 108 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
 
 
 static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_LOGOS_SELF_TYPE_NORMAL NMPlayerManager* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, signed a3) {
@@ -160,7 +168,7 @@ static void _logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$(_
 
 
 
-static __attribute__((constructor)) void _logosLocalCtor_2cde6470(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_79de844b(int __unused argc, char __unused **argv, char __unused **envp) {
     
 
 
@@ -175,7 +183,10 @@ static __attribute__((constructor)) void _logosLocalCtor_2cde6470(int __unused a
 
 
 
-    _reloadSettings();
+    UpdateUserDefaults();
+    
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)UpdateUserDefaults, CFSTR("wiki.qaq.NMRoutine-preferencesChanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+    
 
 
 
@@ -185,4 +196,4 @@ static __attribute__((constructor)) void _logosLocalCtor_2cde6470(int __unused a
 }
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$NMPlayerManager = objc_getClass("NMPlayerManager"); { MSHookMessageEx(_logos_class$_ungrouped$NMPlayerManager, @selector(setHighlightedLyricIndex:), (IMP)&_logos_method$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$, (IMP*)&_logos_orig$_ungrouped$NMPlayerManager$setHighlightedLyricIndex$);}} }
-#line 160 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"
+#line 171 "/Users/qaq/Documents/GitHub/iLrcOverlay/NMRoutine/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider/NeteaseMusicLyricProvider.xm"

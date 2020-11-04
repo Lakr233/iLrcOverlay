@@ -12,10 +12,13 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
-        _enabled = [dict[@"Enabled"] boolValue];
-        _useLandscapeMode = [dict[@"UseLandscapeMode"] boolValue];
-        _placedAtTop = [dict[@"PlacedAtTop"] boolValue];
-        NSString *fontPath = [@"/System/Library/Fonts/AppFonts/" stringByAppendingPathComponent:(NSString *)(dict[@"FontFileName"] ?: @"Hiragino.ttf")];
+        
+        BOOL isPad = [UIDevice.currentDevice userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+        
+        _enabled = dict[@"Enabled"] ? [dict[@"Enabled"] boolValue] : YES;
+        _useLandscapeMode = dict[@"UseLandscapeMode"] ? [dict[@"UseLandscapeMode"] boolValue] : NO;
+        _placedAtTop = dict[@"PlacedAtTop"] ? [dict[@"PlacedAtTop"] boolValue] : !isPad;
+        NSString *fontPath = [@"/System/Library/Fonts/AppFonts/" stringByAppendingPathComponent:(NSString *)(dict[@"FontFileName"] ?: @"SomeFontWontExistsJustFineLol233.bad")];
         _font = [UIFont customFontWithURL:[NSURL fileURLWithPath:fontPath] size:[(NSNumber *)(dict[@"FontSize"] ?: @(14.0)) doubleValue]];
         if (!_font) {
             _font = [UIFont systemFontOfSize:[(NSNumber *)(dict[@"FontSize"] ?: @(14.0)) doubleValue]];
