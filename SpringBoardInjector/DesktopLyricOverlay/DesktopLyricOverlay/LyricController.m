@@ -54,10 +54,10 @@ static BOOL FlushBundleCache(NSBundle *prefBundle) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
     _lyricLabel.font = _config.font;
-    
+
     if (_config.placedAtTop) {
         _topConstraint.priority = UILayoutPriorityRequired;
         _bottomConstraint.priority = 1;
@@ -87,12 +87,12 @@ static BOOL FlushBundleCache(NSBundle *prefBundle) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLyric) object:nil];
     [_bannerView setHidden:NO];
     [_lyricLabel setText:string];
-    
+
     // curl http://127.0.0.1:6996/SETLRC\?param\=VEVTVCBERUJVRyBOTyBISURFIDAxMjMg5rWL6K+VIPCfmIIK
     if ([string containsString:@"TEST DEBUG NO HIDE"]) {
         return;
     }
-    
+
     [self performSelector:@selector(hideLyric) withObject:nil afterDelay:8.0];
 }
 

@@ -23,10 +23,10 @@ static LyricController *_lyricController = nil;
 static LyricConfig *_lyricConfig = nil;
 
 static void UpdateUserDefaults() {
-    
-    
+
+
     BOOL isSystem = [NSHomeDirectory() isEqualToString:@"/var/mobile"];
-    
+
     NSDictionary *prefs = nil;
     if (isSystem) {
         CFArrayRef keyList = CFPreferencesCopyKeyList(CFSTR(TWEAK_ID), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
@@ -39,27 +39,27 @@ static void UpdateUserDefaults() {
     if (!prefs) {
         prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/" TWEAK_ID ".plist"];
     }
-    
+
     _lyricConfig = [[LyricConfig alloc] initWithDictionary:prefs];
-    
+
     NSString *oldLyric = nil;
     LyricController *newCtrl = [LyricController newWithLyricConfig:_lyricConfig];
     if (_lyricController) {
         oldLyric = _lyricController.lyricLabel.text;
     }
     _lyricController = newCtrl;
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [_lyricWindow setHidden:!_lyricConfig.isEnabled];
         [_lyricWindow setRootViewController:_lyricController];
-        
+
         if (oldLyric) {
             [_lyricController showLyricWithString:oldLyric];
         } else {
-            [_lyricController showLyricWithString:@"👀"];
+            [_lyricController showLyricWithString:@"预览"];
         }
     });
-    
+
 }
 
 
@@ -83,8 +83,8 @@ static void UpdateUserDefaults() {
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class SpringBoard; @class CAWindowServerDisplay; 
-static unsigned int (*_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$)(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); 
+@class SpringBoard; @class CAWindowServerDisplay;
+static unsigned int (*_logos_orig$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$)(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPosition$excludingContextIds$(_LOGOS_SELF_TYPE_NORMAL CAWindowServerDisplay* _LOGOS_SELF_CONST, SEL, CGPoint, NSArray <NSNumber *> *); static void (*_logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$)(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST, SEL, id);
 
 #line 64 "/Users/darwin/Projects/iLrcOverlay/SpringBoardInjector/DesktopLyricOverlay/DesktopLyricOverlay/DesktopLyricOverlay.xm"
 
@@ -103,9 +103,9 @@ static unsigned int _logos_method$_ungrouped$CAWindowServerDisplay$contextIdAtPo
 
 
 static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(_LOGOS_SELF_TYPE_NORMAL SpringBoard* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1) {
-    
+
     _logos_orig$_ungrouped$SpringBoard$applicationDidFinishLaunching$(self, _cmd, arg1);
-    
+
     _lyricWindow = [[LyricWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [_lyricWindow setBackgroundColor:[UIColor clearColor]];
     [_lyricWindow setWindowLevel:UIWindowLevelStatusBar + 1];
@@ -116,35 +116,35 @@ static void _logos_method$_ungrouped$SpringBoard$applicationDidFinishLaunching$(
     [@{
         @"LyricContextId": @([_lyricWindow _contextId])
     } writeToFile:@"/tmp/" TWEAK_ID ".plist" atomically:YES];
-    
+
     UpdateUserDefaults();
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)UpdateUserDefaults, CFSTR(TWEAK_ID "-preferencesChanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-    
+
     GCDWebServer *_s = [[GCDWebServer alloc] init];
     [_s addDefaultHandlerForMethod:@"GET"
                       requestClass:[GCDWebServerRequest class]
                       processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
-        
+
         NSMutableString *base64 = [[[[[request URL] absoluteString] componentsSeparatedByString:@"?"] lastObject] mutableCopy];
         [base64 deleteCharactersInRange:NSMakeRange(0, 6)];
         NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64 options:kNilOptions];
         NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-        
+
         if (!decodedString.length) {
             return [GCDWebServerDataResponse responseWithHTML:@"invalid"];
         }
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [_lyricController showLyricWithString:decodedString];
         });
-        
+
         NSString* ret = [[NSString alloc] initWithFormat:@"ok %@", decodedString];
         return [GCDWebServerDataResponse responseWithHTML:ret];
-        
+
     }];
-    
+
     [_s startWithPort:6996 bonjourName:nil];
-    
+
 }
 
 
