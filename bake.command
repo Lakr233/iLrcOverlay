@@ -73,6 +73,7 @@ cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.dylib ./nmlrc/Library/Mobil
 cp ./temp/Library/MobileSubstrate/DynamicLibraries/*.plist ./nmlrc/Library/MobileSubstrate/DynamicLibraries/
 mkdir -p ./nmlrc/Library/PreferenceLoader/Preferences
 cp ./temp/Library/PreferenceLoader/Preferences/* ./nmlrc/Library/PreferenceLoader/Preferences
+cp ./temp/System ./nmlrc/System
 cd nmlrc
 find . -exec ldid -S {} + &> /dev/null || true
 dpkg-deb -Zgzip -b . ../nmlrc.deb
